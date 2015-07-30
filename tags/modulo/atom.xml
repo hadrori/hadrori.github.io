@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: modulo | Algoogle]]></title>
+  <link href="http://algoogle.hadrori.jp/tags/modulo/atom.xml" rel="self"/>
+  <link href="http://algoogle.hadrori.jp/"/>
+  <updated>2015-07-30T13:19:33+09:00</updated>
+  <id>http://algoogle.hadrori.jp/</id>
+  <author>
+    <name><![CDATA[hadrori]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AOJ 2595 Cookie Counter]]></title>
+    <link href="http://algoogle.hadrori.jp/aoj/2595/"/>
+    <updated>2015-04-07T01:27:26+09:00</updated>
+    <id>http://algoogle.hadrori.jp/aoj/2595</id>
+    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2595">Cookie Counter</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<p>D(&lt;=1,000,000,000,000)日でN(&lt;=2,000)個のクッキーを食べたい.<br />
+ただし1日に食べる枚数はX(&lt;=2,000)枚以下でなければならない.<br />
+食べ方は何通りあるか.</p>
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>実際に1枚以上クッキーを食べる日数はN日以下.<br />
+つまり1枚も食べない日を除いてDPすればよい.<br />
+その結果に対して食べる日と食べない日の組合せを求めれば答えになる.<br />
+dp[i][j] := i日でj枚食べる場合の数<br />
+とすれば</p>
+
+<p><script type="math/tex; mode=display"></p>
+
+<p>dp[i+1][j] = \sum_{k=j-x+1}^{j-1} dp[i][k]</p>
+
+<p></script></p>
+
+<p>これは連続する区間の和になっているのでDPの更新の時に区間をスライドさせて行けば各日数の更新はO(N)になる.<br />
+これでこのDPの計算量はO(N^2)である.</p>
+
+<p>あとは食べる日と食べない日の組合せを計算してやればよい.<br />
+各組合せの計算はDが大きいのでO(N)で計算する.</p>
+
+<p><script type="math/tex; mode=display"></p>
+
+<p>\sum_{i=1}^{N} dp[i][N] * {}<em>{D}C</em>{i}</p>
+
+<p></script></p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (2595.cpp)</span> <a href='/downloads/code/AOJ/2595.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="mi">2048</span><span class="p">][</span><span class="mi">2048</span><span class="p">],</span> <span class="n">inv</span><span class="p">[</span><span class="mi">2048</span><span class="p">];</span>
+</span><span class='line'><span class="kt">long</span> <span class="kt">long</span> <span class="n">d</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">dp</span><span class="p">));</span>
+</span><span class='line'>        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>                        <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">mod</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">min</span><span class="p">(</span><span class="mi">1LL</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span><span class="p">];</span>
+</span><span class='line'>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="n">tmp</span> <span class="o">=</span> <span class="mi">1LL</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="o">*</span><span class="n">tmp</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>                        <span class="n">tmp</span> <span class="o">=</span> <span class="mi">1LL</span><span class="o">*</span><span class="n">tmp</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">tmp</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">bool</span> <span class="nf">input</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%lld%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">n</span> <span class="n">or</span> <span class="n">d</span> <span class="n">or</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="n">inv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2048</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1LL</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">mod</span><span class="o">%</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">mod</span><span class="o">-</span><span class="n">mod</span><span class="o">/</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">input</span><span class="p">())</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler 48 Self powers]]></title>
+    <link href="http://algoogle.hadrori.jp/projecteuler/48/"/>
+    <updated>2014-05-14T08:50:30+09:00</updated>
+    <id>http://algoogle.hadrori.jp/projecteuler/48</id>
+    <content type="html"><![CDATA[<p><a href="http://projecteuler.net/problem=48">Self powers</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>累乗して足すだけ</p>
+
+<p>####</p>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (48.hs)</span> <a href='/downloads/code/PE/48.hs'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='hs'><span class='line'><span class="nf">ans</span> <span class="ow">::</span> <span class="kt">Integer</span>
+</span><span class='line'><span class="nf">ans</span> <span class="ow">=</span> <span class="n">sum</span> <span class="p">[</span> <span class="n">x</span><span class="o">^</span><span class="n">x</span> <span class="p">`</span><span class="n">mod</span><span class="p">`</span> <span class="mi">10000000000</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">1000</span><span class="p">]]</span> <span class="p">`</span><span class="n">mod</span><span class="p">`</span> <span class="mi">10000000000</span>
+</span><span class='line'><span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AOJ 1501 Grid]]></title>
+    <link href="http://algoogle.hadrori.jp/aoj/1501/"/>
+    <updated>2014-05-14T08:46:15+09:00</updated>
+    <id>http://algoogle.hadrori.jp/aoj/1501</id>
+    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1501">Grid</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>境界を超えると反対側の境界に出るので, 元のグリッドを8方向に元のグリッド1つ分拡張したグリッドを考える.<br />
+元の点bの位置をそれぞれ8方向に拡張された位置に移動させた点と<br />
+点aの位置の距離が一番小さくなる点をリストアップする.<br />
+あとはaからそれぞれの点まで行く組み合わせを合計すればいい.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (1501.cpp)</span> <a href='/downloads/code/AOJ/1501.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define rep(i,a) for(int i = 0;i &lt; (a); i++)</span>
+</span><span class='line'><span class="cp">#define repi(i,a,b) for(int i = (a); i &lt; (b); i++)</span>
+</span><span class='line'><span class="cp">#define pb push_back</span>
+</span><span class='line'><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="mi">100000007</span><span class="p">;</span>
+</span><span class='line'><span class="k">const</span> <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">dr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">dc</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">extgcd</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">,</span> <span class="n">ll</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">ll</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">g</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">g</span> <span class="o">=</span> <span class="n">extgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">y</span> <span class="o">-=</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">g</span><span class="p">;</span> <span class="c1">// 1なら解あり</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">mod_inverse</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">extgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// unsolvable</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="n">fact</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+</span><span class='line'><span class="n">ll</span> <span class="nf">mod_fact</span><span class="p">(</span><span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">,</span> <span class="n">ll</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">n</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="n">mod_fact</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">e</span> <span class="o">+=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">m</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="n">res</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span> <span class="o">%</span> <span class="n">m</span><span class="p">])</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">res</span> <span class="o">*</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span> <span class="o">%</span> <span class="n">m</span><span class="p">]</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">mod_comb</span><span class="p">(</span><span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">ll</span> <span class="n">k</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">mod_fact</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">e1</span><span class="p">),</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">mod_fact</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">e2</span><span class="p">),</span> <span class="n">a3</span> <span class="o">=</span> <span class="n">mod_fact</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">e3</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">e1</span> <span class="o">&gt;</span> <span class="n">e2</span> <span class="o">+</span> <span class="n">e3</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// m で割り切れる</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">mod_inverse</span><span class="p">(</span><span class="n">a2</span> <span class="o">*</span> <span class="n">a3</span> <span class="o">%</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">repi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">MAX</span><span class="p">)</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">complex</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">real</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">imag</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">real</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">imag</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">d</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">8</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">complex</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">t</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">()</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">real</span><span class="p">()</span> <span class="o">+</span> <span class="n">dr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">r</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">t</span><span class="p">.</span><span class="n">imag</span><span class="p">()</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">imag</span><span class="p">()</span> <span class="o">+</span> <span class="n">dc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">c</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">a</span><span class="p">)){</span>
+</span><span class='line'>            <span class="n">d</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span class='line'>            <span class="n">d</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">norm</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">a</span><span class="p">))</span> <span class="n">d</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">d</span><span class="p">.</span><span class="n">size</span><span class="p">()){</span>
+</span><span class='line'>        <span class="n">complex</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">t</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">()</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">t</span><span class="p">.</span><span class="n">imag</span><span class="p">()</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">imag</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">ans</span> <span class="o">+=</span> <span class="n">mod_comb</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">()</span><span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">imag</span><span class="p">(),</span><span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">(),</span><span class="n">mod</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">ans</span> <span class="o">%=</span> <span class="n">mod</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AOJ 2353 Four Arithmetic Operations]]></title>
+    <link href="http://algoogle.hadrori.jp/aoj/2353/"/>
+    <updated>2014-05-14T08:42:06+09:00</updated>
+    <id>http://algoogle.hadrori.jp/aoj/2353</id>
+    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2353">Four Arithmetic Operations</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>計算結果の絶対値は2^31に収まるけど, 途中経過が余裕でオーバーしてくるので<br />
+適当にmodとってやる<br />
+-&gt;掛け算でオーバーフローするのでだめ<br />
+(BigInteger使えるならそれで大丈夫なはず)</p>
+
+<p>中国式剰余定理なら素数m,nについて<br />
+ y ≡ a (mod m), y ≡ b (mod n)
+のとき,<br />
+x ≡ y (mod mn)<br />
+となるxが一意に定まる. <br />
+このことからm, nを適当な大きさでとればオーバーフローなくxを求められる.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (2353.cpp)</span> <a href='/downloads/code/AOJ/2353.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">long</span> <span class="kt">long</span> <span class="nf">extgcd</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">b</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">long</span> <span class="n">g</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">g</span> <span class="o">=</span> <span class="n">extgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">y</span> <span class="o">-=</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">g</span><span class="p">;</span> <span class="c1">// 1なら解あり</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">long</span> <span class="kt">long</span> <span class="nf">mod_inverse</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">m</span><span class="p">){</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">extgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// unsolvable</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">const</span> <span class="n">ll</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">999979</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">999983</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">calc</span><span class="p">(</span><span class="n">ll</span> <span class="o">&amp;</span><span class="n">mx</span><span class="p">,</span> <span class="n">ll</span> <span class="o">&amp;</span><span class="n">nx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">o</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">switch</span><span class="p">(</span><span class="n">o</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span><span class='line'>        <span class="n">mx</span> <span class="o">=</span> <span class="p">(</span><span class="n">mx</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">nx</span> <span class="o">=</span> <span class="p">(</span><span class="n">nx</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span><span class='line'>        <span class="n">mx</span> <span class="o">=</span> <span class="p">(</span><span class="n">mx</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">nx</span> <span class="o">=</span> <span class="p">(</span><span class="n">nx</span> <span class="o">-</span> <span class="n">y</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+</span><span class='line'>        <span class="n">mx</span> <span class="o">=</span> <span class="n">mx</span> <span class="o">*</span> <span class="n">y</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">nx</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">y</span> <span class="o">%</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+</span><span class='line'>        <span class="n">mx</span> <span class="o">=</span> <span class="n">mx</span> <span class="o">*</span> <span class="n">mod_inverse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">nx</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">mod_inverse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">mx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">N</span><span class="o">--</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">ll</span> <span class="n">o</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">o</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">calc</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">o</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">extgcd</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">nx</span> <span class="o">+</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">mx</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="n">n</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1LL</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">)</span> <span class="n">x</span> <span class="o">-=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AOJ 2335 10-Year-Old Dynamic Programming]]></title>
+    <link href="http://algoogle.hadrori.jp/aoj/2335/"/>
+    <updated>2014-05-13T18:20:54+09:00</updated>
+    <id>http://algoogle.hadrori.jp/aoj/2335</id>
+    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2335">10-Year-Old Dynamic Programming</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>組み合わせは負の地点に到達する場合を除いて</p>
+
+<p><script type="math/tex; mode=display">
+\begin{eqnarray}
+\sum^K_{i=0}\big({}<em>{N+2i} C _i- {}</em>{N+2i}C_{i-1}\big)\times \big({}<em>{N+2(K-i)} C</em>{K-i}-{}<em>{N+2(K-i)}C</em>{(K-i)-1}\big)\times {}<em>{N+M+2k}C</em>{N + 2i}
+\end{eqnarray}
+</script></p>
+
+<p>で求められる.<br />
+あとはmod周りを注意する.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (2335.cpp)</span> <a href='/downloads/code/AOJ/2335.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;algorithm&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
+</span><span class='line'><span class="cp">#define rep(i,a) for(int i = 0;i &lt; (a); i++)</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">const</span> <span class="n">ll</span> <span class="n">MOD</span> <span class="o">=</span> <span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="n">fact</span><span class="p">[</span><span class="mi">300000</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">extgcd</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">,</span> <span class="n">ll</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">ll</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">g</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">g</span> <span class="o">=</span> <span class="n">extgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">y</span> <span class="o">-=</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">g</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">mod_inverse</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">extgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// unsolvable</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ll</span> <span class="nf">mod_comb</span><span class="p">(</span><span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">ll</span> <span class="n">k</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">mod_inverse</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span> <span class="o">%</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">300000</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">ll</span> <span class="n">j</span> <span class="o">=</span> <span class="n">k</span><span class="o">-</span><span class="n">i</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ll</span> <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">mod_comb</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">-</span> <span class="n">mod_comb</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span><span class="n">MOD</span><span class="p">)</span> <span class="o">+</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ll</span> <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">mod_comb</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">-</span> <span class="n">mod_comb</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">+</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">d</span> <span class="o">%</span> <span class="n">MOD</span> <span class="o">*</span> <span class="n">mod_comb</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">MOD</span><span class="p">))</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>

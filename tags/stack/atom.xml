@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: stack | Algoogle]]></title>
+  <link href="http://algoogle.hadrori.jp/tags/stack/atom.xml" rel="self"/>
+  <link href="http://algoogle.hadrori.jp/"/>
+  <updated>2015-07-30T13:19:33+09:00</updated>
+  <id>http://algoogle.hadrori.jp/</id>
+  <author>
+    <name><![CDATA[hadrori]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PKU 3044 City Skyline]]></title>
+    <link href="http://algoogle.hadrori.jp/pku/3044/"/>
+    <updated>2014-05-15T15:52:22+09:00</updated>
+    <id>http://algoogle.hadrori.jp/pku/3044</id>
+    <content type="html"><![CDATA[<p><a href="http://poj.org/problem?id=3044">City Skyline</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<p>左側から順に, 影の高さが変化する位置と変化後の高さが与えられる.<br />
+推測される建物の数の最小数を求めよ</p>
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>基本的に高さが増える場合に答えが1増える.<br />
+スタックを利用する.<br />
+スタックに高さが増える場合積む. その際に答えを1増やす.<br />
+高さが減る場合はスタックトップがその高さより高い限りポップする.<br />
+ポップした結果, 減った後の高さがスタックトップより高ければスタックに積む. その際に答えを1増やす.</p>
+
+<p>####</p>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (3044.cpp)</span> <a href='/downloads/code/PKU/3044.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;cstdio&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;stack&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">W</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">W</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">st</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>                <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">()){</span>
+</span><span class='line'>            <span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">()){</span>
+</span><span class='line'>            <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">or</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)){</span>
+</span><span class='line'>                <span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PKU 3250 Bad Hair Day]]></title>
+    <link href="http://algoogle.hadrori.jp/pku/3250/"/>
+    <updated>2014-05-15T14:54:51+09:00</updated>
+    <id>http://algoogle.hadrori.jp/pku/3250</id>
+    <content type="html"><![CDATA[<p><a href="http://poj.org/problem?id=3250">Bad Hair Day</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<p>牛が横一列に右を向いてならんでいる.<br />
+各牛は高さh[i]の台に乗っていて, 自分より右側の高さが自分より低い牛を見ることができる.<br />
+そのとき, 各牛が見ることができる牛の数の総和を求めよ.</p>
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>自分以上の高さが現れた時, その牛はもうそれ以上牛を見ることが出来ないことを考えると, stackを用いることで解ける.<br />
+左から順に処理していって, 各牛よりstackのtopが低い間stackの一番上を取り除く.<br />
+残ったstackの要素の牛がその牛を見ることができるので, stackに残っている要素数を答えに足していけば良い.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (3250.cpp)</span> <a href='/downloads/code/PKU/3250.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;cstdio&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define int long long</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">ans</span><span class="p">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">st</span><span class="p">[</span><span class="mi">80010</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">signed</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">N</span><span class="o">--</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">top</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">st</span><span class="p">[</span><span class="n">top</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">h</span><span class="p">)</span> <span class="n">top</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ans</span> <span class="o">+=</span> <span class="n">top</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">st</span><span class="p">[</span><span class="n">top</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>

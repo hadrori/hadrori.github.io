@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: grundy-number | Algoogle]]></title>
+  <link href="http://algoogle.hadrori.jp/tags/grundy-number/atom.xml" rel="self"/>
+  <link href="http://algoogle.hadrori.jp/"/>
+  <updated>2015-07-30T13:19:33+09:00</updated>
+  <id>http://algoogle.hadrori.jp/</id>
+  <author>
+    <name><![CDATA[hadrori]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PKU 2975 Nim]]></title>
+    <link href="http://algoogle.hadrori.jp/pku/2975/"/>
+    <updated>2014-05-04T17:26:47+09:00</updated>
+    <id>http://algoogle.hadrori.jp/pku/2975</id>
+    <content type="html"><![CDATA[<p><a href="http://poj.org/problem?id=2975">Nim</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>必ず勝てるようになる1手目の数を返す.<br />
+Nimはxorとって0以外だったら必勝.<br />
+その場合の石の取り方は石をとった後にxorをすべて取ると0になるようにとる.<br />
+そのように取れる山は1が立っているビットのうち最上位のビットがxor取った値の1が立ってる最上位のビットと同じ位置でなくてはいけない.<br />
+またそのようなとき, 取り方は必ず1つだけある.<br />
+よってそのような山の数を数えれば良い.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (2975.cpp)</span> <a href='/downloads/code/PKU/2975.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;cstdio&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define rep(i,a) for(int i = 0;i &lt; (a); i++)</span>
+</span><span class='line'><span class="cp">#define repi(i,a,b) for(int i = (a); i &lt; (b); i++)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">x</span> <span class="o">^=</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="p">)</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">pos</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">pos</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">),</span> <span class="n">n</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler 301 Nim]]></title>
+    <link href="http://algoogle.hadrori.jp/projecteuler/301/"/>
+    <updated>2014-05-04T17:14:29+09:00</updated>
+    <id>http://algoogle.hadrori.jp/projecteuler/301</id>
+    <content type="html"><![CDATA[<p><a href="http://projecteuler.net/problem=301">Nim</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>Nimなので3つのxorとって0以外だったらカウント</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (301.d)</span> <a href='/downloads/code/PE/301.d'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='d'><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="nb">string</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">conv</span><span class="p">;</span>
+</span><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">bigint</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">math</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">range</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">const</span> <span class="kt">long</span> <span class="n">MAX</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">&lt;&lt;</span> <span class="mi">30</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="mf">1.</span><span class="p">.</span><span class="n">MAX</span><span class="p">+</span><span class="mi">1</span><span class="p">){</span>
+</span><span class='line'>        <span class="kt">long</span> <span class="n">x</span> <span class="p">=</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">x</span> <span class="p">^=</span> <span class="mi">2</span> <span class="p">*</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">x</span> <span class="p">^=</span> <span class="mi">3</span> <span class="p">*</span> <span class="n">n</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(!</span><span class="n">x</span><span class="p">)</span> <span class="n">ans</span><span class="p">++;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">writeln</span><span class="p">(</span><span class="n">ans</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AOJ 2339 Person responsible for problem description don't w]]></title>
+    <link href="http://algoogle.hadrori.jp/aoj/2339/"/>
+    <updated>2014-05-04T17:09:25+09:00</updated>
+    <id>http://algoogle.hadrori.jp/aoj/2339</id>
+    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2339">Person responsible for problem description don’t w</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>閉路がないので必ず端の点は単調非増加. その点が0になったらその前の点が単調非増加になる.<br />
+よって必ずすべての石は取ることが出来て, 引き分けは存在しない.</p>
+
+<p>各点について, その先の点の石の数は自由に変化させられる.<br />
+サンプルの1を例に取って考えてみる.<br />
+1番の山から石をとる時, 2番の山の石の数は自由に変化できる.<br />
+このとき, 2番の山を必ず0にすれば2番の山は無視でき, 同様に考えて1, 3, 5の独立した山だと考えることができる.<br />
+相手によって2番の山を増やされて, 1番の山がなくなった場合は, 2番の山を全てとって3番の山を減らしたい数だけ減らせば良い.<br />
+<img src="/images/aoj2339-01.png" alt="aoj2339-01" />
+同様に, 2番めの山を取ってやりたいときは1番目の山をすべて取って, 2番めを減らしたい数だけ減らす. 1番目がないなら直接とって, 3番目は0にする. みたいに繰り返せる.<br />
+このことからサンプル1では<br />
+{1, 3, 5}, {2, 4, 6}<br />
+の2つ山の集合それぞれについて分けてそれぞれのNimを考えれば良い. どちらを選択するかは先手が自由に決められるのでどちらかに必勝な場合があれば先手の勝ち.<br />
+なお, 目的の山を相手に増やされた場合は同じ数だけ減らしてやれば打ち消せるので無視出来る.</p>
+
+<p>もうすこし複雑な場合について考える.<br />
+サンプル1に新たに7番目の点を追加して, 5と6に有向辺を張った場合, その山は上のどちらの集合の山にもアクセスできる.<br />
+7番の山をすべてとって, 5番と6番を変化させて上のどちらの集合でも勝てるようにすれば必ず勝てるようになることが分かる.(つまり次の手が負けパターンになるようにする. )<br />
+また新たに8番目の山を4, 5の山に辺を張るように考えると, これも7番と同じように考えられるが7番が残っている. これは7, 8だけで考えた時に最後に石をとる時, 先の山をいじるようにすればよい.<br />
+よって{7, 8} を独立でかんがえた場合のの勝敗と全体の勝敗が一致する.<br />
+これを繰り返すことで, 様々な場合で勝敗が決められるようになる.</p>
+
+<p>あとは集合の分け方さえちゃんと決まればいい.<br />
+ある点が属する集合は有向辺の先の集合と同じではいけないことは上から明らか.<br />
+もっと言うと, 辺の先の集合に非負の番号をつけておくと, それら以外の最小の非負整数がその点の属する集合の番号になる.(ちょっと考えれば上の考察からわかるはず)</p>
+
+<p>ということで, 再帰でその点の番号を出して, 同じ番号同士でそれぞれNimを考えて, 勝ちパターンが一つでもあれば勝ち, それ以外は負け. としてやればよい.<br />
+Nimはxorとるだけ.</p>
+
+<p>ちなみに, 集合の番号決めはgrundy数を決定するのとほぼおなじと考えられるので, grundy数について理解してからやると割りと自然にこの考察に行き着く.</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<p><figure class='code'><figcaption><span> (2339.cpp)</span> <a href='/downloads/code/AOJ/2339.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;cstdio&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;cstring&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;vector&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define repi(i,a,b) for(int i = (a); i &lt; (b); i++)</span>
+</span><span class='line'><span class="cp">#define rep(i,a) repi(i,0,a)</span>
+</span><span class='line'><span class="cp">#define pb push_back</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">typedef</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vi</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">maxId</span><span class="p">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">v</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">id</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">nim</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span><span class='line'><span class="n">vi</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">){</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">a</span><span class="o">--</span><span class="p">;</span> <span class="n">b</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">edge</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">pb</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memset</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">build_id</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">used</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="n">used</span><span class="p">[</span><span class="n">build_id</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">used</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]);</span>
+</span><span class='line'>    <span class="n">maxId</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxId</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">--</span><span class="n">k</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="n">build_id</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">maxId</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">nim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">maxId</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">nim</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">input</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+]]></content>
+  </entry>
+  
+</feed>
