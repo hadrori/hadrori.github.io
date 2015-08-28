@@ -7,14 +7,11 @@ int N, W, C, w[128], v[128], c[128], dp[10010][60], dp2[10010][60];
 
 int solve() {
     rep(i,50) {
-        vector<int> ws, vs;
-        rep(j,N) if(c[j] == i) {
-            ws.push_back(w[j]);
-            vs.push_back(v[j]);
-        }
         memcpy(dp, dp2, sizeof(dp));
-        rep(j,ws.size()) for(int k = W; k >= ws[j]; k--) rep(l,C+1) dp[k][l] = max(dp[k][l], dp[k-ws[j]][l]+vs[j]);
-        rep(j,W+1) rep(k,C) dp2[j][k+1] = max(dp2[j][k+1], dp[j][k]);
+        rep(j,N) if(c[j] == i)
+            for(int k = W; k >= w[j]; k--)
+                rep(l,C+1) dp[k][l] = max(dp[k][l], dp[k-w[j]][l]+v[j]);
+        rep(k,W+1) rep(l,C) dp2[k][l+1] = max(dp2[k][l+1], dp[k][l]);
     }
     int ans = 0;
     rep(i,W+1) rep(j,C+1) ans = max(ans, dp2[i][j]);
