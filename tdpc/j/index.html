@@ -161,23 +161,28 @@ Tag: <span class="tags">
 また自分以外への状態へ遷移するのにかかる回数の期待値も考慮する．</p>
 
 <ul>
-  <li>
-    <p>s != t, s != u, s != vのとき
-dp[s] = (dp[t]+dp[u]+dp[v])/3+3/3</p>
-  </li>
-  <li>
-    <p>s = t, s != u, s != vのとき
-dp[s] = (dp[u]+dp[v])/2+3/2</p>
-  </li>
-  <li>
-    <p>s = t, s = u, s != vのとき
-dp[s] = dp[v]/1+3/1</p>
-  </li>
-  <li>
-    <p>s = t, s = u, s = vのとき
-投げない</p>
-  </li>
+  <li>s != t, s != u, s != vのとき</li>
 </ul>
+
+<p>dp[s] = (dp[t]+dp[u]+dp[v])/3+3/3</p>
+
+<ul>
+  <li>s = t, s != u, s != vのとき</li>
+</ul>
+
+<p>dp[s] = (dp[u]+dp[v])/2+3/2</p>
+
+<ul>
+  <li>s = t, s = u, s != vのとき</li>
+</ul>
+
+<p>dp[s] = dp[v]/1+3/1</p>
+
+<ul>
+  <li>s = t, s = u, s = vのとき</li>
+</ul>
+
+<p>投げない</p>
 
 <h4 id="section-2">コード</h4>
 
