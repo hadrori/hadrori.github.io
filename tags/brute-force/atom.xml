@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: brute-force | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/brute-force/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-09-08T19:32:02+09:00</updated>
+  <updated>2015-09-10T23:44:03+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -96,7 +96,7 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">l</span><span class="o">++</span><span class="p">)</span>
@@ -127,14 +127,14 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -231,7 +231,7 @@ M&lt;=100から参加者数は最大でも14で(15C2&gt;100), また条件を満
 </span><span class='line'><span class="kt">int</span> <span class="n">G</span><span class="p">[</span><span class="mi">128</span><span class="p">][</span><span class="mi">128</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">fr</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cand</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">calc</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">calc</span><span class="p">(){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">repit</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cand</span><span class="p">){</span>
 </span><span class='line'>        <span class="n">x</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">;</span>
@@ -241,7 +241,7 @@ M&lt;=100から参加者数は最大でも14で(15C2&gt;100), また条件を満
 </span><span class='line'>    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">rec</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">inv</span><span class="p">){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">rec</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">inv</span><span class="p">){</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">inv</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">calc</span><span class="p">();</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">==</span><span class="n">N</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">fr</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">inv</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">rec</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">inv</span><span class="p">);</span>
@@ -252,14 +252,14 @@ M&lt;=100から参加者数は最大でも14で(15C2&gt;100), また条件を満
 </span><span class='line'>    <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">rec</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">inv</span><span class="p">));</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">&lt;=</span><span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span><span class='line'>        <span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">rec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">){</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">f</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">u</span> <span class="o">&gt;&gt;</span> <span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="n">f</span><span class="p">;</span>
@@ -269,7 +269,7 @@ M&lt;=100から参加者数は最大でも14で(15C2&gt;100), また条件を満
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -409,7 +409,7 @@ y = (b - a) / 2<br />
 </span><span class='line'><span class="cp">#define rep(i,a) for(int i = 0;i &lt; (a); i++)</span>
 </span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">string</span> <span class="n">a</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -535,7 +535,7 @@ y = (b - a) / 2<br />
 </span><span class='line'><span class="n">string</span> <span class="n">op</span> <span class="o">=</span> <span class="s">&quot;+-/*&quot;</span><span class="p">;</span>
 </span><span class='line'><span class="kt">bool</span> <span class="n">memo</span><span class="p">[</span><span class="mi">128</span><span class="p">][</span><span class="mi">256</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">inter</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">){</span>
@@ -550,10 +550,10 @@ y = (b - a) / 2<br />
 </span><span class='line'>        <span class="n">string</span> <span class="n">s</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">){</span>
 </span><span class='line'>            <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">itr</span> <span class="o">==</span> <span class="n">id</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="n">memo</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">atoi</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">())]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">itr</span> <span class="o">==</span> <span class="n">id</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="n">memo</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">atoi</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">())]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 </span><span class='line'>            <span class="k">else</span> <span class="p">{</span>
 </span><span class='line'>                <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">itr</span><span class="p">).</span><span class="n">snd</span><span class="p">;</span>
-</span><span class='line'>                <span class="n">repi</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">inter</span><span class="p">[</span><span class="n">pos</span><span class="p">].</span><span class="n">fst</span><span class="p">,</span><span class="n">inter</span><span class="p">[</span><span class="n">pos</span><span class="p">].</span><span class="n">snd</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">memo</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">repi</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">inter</span><span class="p">[</span><span class="n">pos</span><span class="p">].</span><span class="n">fst</span><span class="p">,</span><span class="n">inter</span><span class="p">[</span><span class="n">pos</span><span class="p">].</span><span class="n">snd</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">memo</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>        <span class="k">else</span><span class="p">{</span>

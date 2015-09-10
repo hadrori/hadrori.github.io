@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TopCoder | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/categories/topcoder/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-09-08T19:32:02+09:00</updated>
+  <updated>2015-09-10T23:44:03+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -143,7 +143,7 @@ S[l] == S[r] ならdp[l+1][r-1]の確率で回文<br />
 </span><span class='line'>    <span class="n">string</span> <span class="n">pos</span> <span class="o">=</span> <span class="s">&quot;Possible&quot;</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">string</span> <span class="n">imp</span> <span class="o">=</span> <span class="s">&quot;Impossible&quot;</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="kt">bool</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">g</span><span class="p">){</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">g</span><span class="p">){</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">col</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">;</span>
 </span><span class='line'>        <span class="n">col</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>
 </span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">size</span><span class="p">())</span>
@@ -151,7 +151,7 @@ S[l] == S[r] ならdp[l+1][r-1]の確率で回文<br />
 </span><span class='line'>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">string</span> <span class="nf">isFamily</span><span class="p">(</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">string</span> <span class="n">isFamily</span><span class="p">(</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>        <span class="n">N</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">col</span><span class="p">));</span>
@@ -271,7 +271,7 @@ AaAとAaAbAというパターン(a, bはA以外で作られた文字列).<br />
 </pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">SplitStoneGame</span> <span class="p">{</span>
 </span><span class='line'><span class="k">public</span><span class="o">:</span>
 </span><span class='line'>    <span class="n">string</span> <span class="n">win</span> <span class="o">=</span> <span class="s">&quot;WIN&quot;</span><span class="p">,</span> <span class="n">lose</span> <span class="o">=</span> <span class="s">&quot;LOSE&quot;</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">string</span> <span class="nf">winOrLose</span><span class="p">(</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">number</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">string</span> <span class="n">winOrLose</span><span class="p">(</span> <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">number</span> <span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">number</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">or</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">return</span> <span class="n">lose</span><span class="p">;</span>
