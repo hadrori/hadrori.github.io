@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AOJ 2313 Box Witch - Algoogle</title>
+  <meta name="author" content="hadrori">
+
+  
+  <meta name="twitter:card" value="summary"/>
+  <meta name="twitter:site" value="@hadrori"/>
+  <meta name="twitter:creater" value="@hadrori"/>
+  <meta name="twitter:url" value=""/>
+  <meta name="twitter:title" value="AOJ 2313 Box Witch - Algoogle">
+  <meta name="twitter:description" value="Box Witch 問題概要 ソースからシンクまで最大流を流す．
+辺の追加と削除のクエリが来るので，各操作後の最大流を答えよ． 解法 毎回1から最大流流していたら当然間に合わない．
+差分だけ流すようにする．
+クエリに来る辺は全部用意しておいて，まだ存在しない辺は容量を0にする． 辺の追加のとき &hellip;">
+  <meta name="description" content="Box Witch 問題概要 ソースからシンクまで最大流を流す．
+辺の追加と削除のクエリが来るので，各操作後の最大流を答えよ． 解法 毎回1から最大流流していたら当然間に合わない．
+差分だけ流すようにする．
+クエリに来る辺は全部用意しておいて，まだ存在しない辺は容量を0にする． 辺の追加のとき &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://algoogle.hadrori.jp/aoj/2313/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Algoogle" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/javascripts/monthly_archive.js"></script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47788601-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Algoogle</a></h1>
+  
+    <h2>Algorithm for Programming Contest</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+<form action="http://www.google.com/cse" id="cse-search-box">
+  <fieldset role="search">
+    <input type="hidden" name="cx" value="012277257184632001359:xptk-jg-eyo" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">Algorithm</a></li>
+  <li><a href="/about/">About</a></li>
+  <li><a href="/links/">Links</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AOJ 2313 Box Witch</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-18T15:01:19+09:00" pubdate data-updated="true"></time>
+        
+
+<span class="categories">
+  Category: 
+  
+    <a class='category' href='/categories/aoj/'>AOJ</a>
+  
+</span>
+
+
+        
+
+Tag: <span class="tags">
+  
+    <a class='tag' href='/tags/max-flow/'>max-flow</a>
+  
+</span>
+
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2313">Box Witch</a></p>
+
+<h4 id="section">問題概要</h4>
+
+<hr />
+
+<p>ソースからシンクまで最大流を流す．<br />
+辺の追加と削除のクエリが来るので，各操作後の最大流を答えよ．</p>
+
+<h4 id="section-1">解法</h4>
+
+<hr />
+
+<p>毎回1から最大流流していたら当然間に合わない．<br />
+差分だけ流すようにする．<br />
+クエリに来る辺は全部用意しておいて，まだ存在しない辺は容量を0にする．</p>
+
+<ul>
+  <li>辺の追加のとき</li>
+</ul>
+
+<p>その辺の容量を1にする．そのあと1だけフローを流す．</p>
+
+<ul>
+  <li>辺の削除のとき</li>
+</ul>
+
+<p>その辺の容量を0にする．<br />
+使われてないなら終わり．使われてるならその辺の両端の間にフローを流す．<br />
+流せたなら終わり．流せなかったらシンクから辺の端点，もう一方の端点からソースへ1だけフローを流す．<br />
+この際に，もともとの流れていた方向を考慮すること．</p>
+
+<h4 id="section-2">コード</h4>
+
+<hr />
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (2313.cpp)</span> <a href="/downloads/code/AOJ/2313.cpp">download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class="line"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class="line"><span class="cp">#define repi(i,a,b) for(int i=(int)(a);i&lt;(int)(b);i++)</span>
+</span><span class="line"><span class="cp">#define rep(i,n) repi(i,0,n)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="n">inf</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">struct</span> <span class="n">max_flow</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">struct</span> <span class="n">edge</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">to</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">rev</span><span class="p">;</span> <span class="p">};</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">V</span><span class="p">;</span>
+</span><span class="line">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;&gt;</span> <span class="n">G</span><span class="p">;</span>
+</span><span class="line">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">itr</span><span class="p">,</span> <span class="n">level</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">max_flow</span><span class="p">()</span> <span class="p">{}</span>
+</span><span class="line">    <span class="n">max_flow</span><span class="p">(</span><span class="kt">int</span> <span class="n">V</span><span class="p">)</span> <span class="o">:</span> <span class="n">V</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="p">{</span> <span class="n">G</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span><span class="p">());}</span>
+</span><span class="line">
+</span><span class="line">    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cap</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">G</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">push_back</span><span class="p">((</span><span class="n">edge</span><span class="p">)</span> <span class="p">{</span><span class="n">to</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">G</span><span class="p">[</span><span class="n">to</span><span class="p">].</span><span class="n">size</span><span class="p">()});</span>
+</span><span class="line">        <span class="n">G</span><span class="p">[</span><span class="n">to</span><span class="p">].</span><span class="n">push_back</span><span class="p">((</span><span class="n">edge</span><span class="p">)</span> <span class="p">{</span><span class="n">from</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">G</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">});</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="kt">void</span> <span class="n">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">level</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span><span class="line">        <span class="n">level</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span><span class="line">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span><span class="line">            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+</span><span class="line">                <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">level</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                    <span class="n">level</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">]</span> <span class="o">=</span> <span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">);</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="kt">int</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">t</span><span class="p">)</span> <span class="k">return</span> <span class="n">f</span><span class="p">;</span>
+</span><span class="line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">itr</span><span class="p">[</span><span class="n">v</span><span class="p">];</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">edge</span><span class="o">&amp;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+</span><span class="line">            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">])</span> <span class="p">{</span>
+</span><span class="line">                <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cap</span><span class="p">));</span>
+</span><span class="line">                <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                    <span class="n">e</span><span class="p">.</span><span class="n">cap</span> <span class="o">-=</span> <span class="n">d</span><span class="p">;</span>
+</span><span class="line">                    <span class="n">G</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">][</span><span class="n">e</span><span class="p">.</span><span class="n">rev</span><span class="p">].</span><span class="n">cap</span> <span class="o">+=</span> <span class="n">d</span><span class="p">;</span>
+</span><span class="line">                    <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="kt">int</span> <span class="n">run</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lim</span> <span class="o">=</span> <span class="n">inf</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">;</span>
+</span><span class="line">        <span class="k">while</span> <span class="p">(</span><span class="n">bfs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">level</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">lim</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">itr</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">            <span class="k">while</span> <span class="p">(</span><span class="n">lim</span> <span class="n">and</span> <span class="p">(</span><span class="n">f</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">lim</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                <span class="n">ret</span> <span class="o">+=</span> <span class="n">f</span><span class="p">;</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">lim</span> <span class="o">!=</span> <span class="n">inf</span><span class="p">)</span> <span class="n">lim</span> <span class="o">-=</span> <span class="n">f</span><span class="p">;</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="kt">void</span> <span class="n">cancel</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">bfs</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span><span class="line">        <span class="n">itr</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">ex</span><span class="p">[</span><span class="mi">512</span><span class="p">][</span><span class="mi">512</span><span class="p">];</span>
+</span><span class="line"><span class="n">vector</span><span class="o">&lt;</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">qs</span><span class="p">;</span>
+</span><span class="line"><span class="n">max_flow</span> <span class="n">mf</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+</span><span class="line">    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">q</span><span class="p">:</span> <span class="n">qs</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">tie</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">mf</span><span class="p">.</span><span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="p">{</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                    <span class="n">e</span><span class="p">.</span><span class="n">cap</span> <span class="o">=</span> <span class="n">mf</span><span class="p">.</span><span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">e</span><span class="p">.</span><span class="n">rev</span><span class="p">].</span><span class="n">cap</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">                    <span class="n">f</span> <span class="o">+=</span> <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                    <span class="k">break</span><span class="p">;</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="k">else</span> <span class="p">{</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">mf</span><span class="p">.</span><span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="p">{</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">cap</span><span class="p">;</span>
+</span><span class="line">                    <span class="n">e</span><span class="p">.</span><span class="n">cap</span> <span class="o">=</span> <span class="n">mf</span><span class="p">.</span><span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">e</span><span class="p">.</span><span class="n">rev</span><span class="p">].</span><span class="n">cap</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">                    <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="line">                    <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="line">                        <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                        <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                    <span class="p">}</span>
+</span><span class="line">                    <span class="k">else</span> <span class="p">{</span>
+</span><span class="line">                        <span class="k">if</span><span class="p">(</span><span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="line">                        <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                        <span class="n">mf</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                    <span class="p">}</span>
+</span><span class="line">                    <span class="n">f</span><span class="o">--</span><span class="p">;</span>
+</span><span class="line">                    <span class="k">break</span><span class="p">;</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span><span class="line">    <span class="n">mf</span> <span class="o">=</span> <span class="n">max_flow</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+</span><span class="line">        <span class="n">a</span><span class="o">--</span><span class="p">;</span> <span class="n">b</span><span class="o">--</span><span class="p">;</span>
+</span><span class="line">        <span class="n">mf</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="line">        <span class="n">ex</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">ex</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>
+</span><span class="line">        <span class="n">b</span><span class="o">--</span><span class="p">;</span> <span class="n">c</span><span class="o">--</span><span class="p">;</span>
+</span><span class="line">        <span class="n">qs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">));</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">ex</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">c</span><span class="p">])</span> <span class="p">{</span>
+</span><span class="line">            <span class="n">ex</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">ex</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">            <span class="n">mf</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">    <span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+</span><span class="line">    <span class="n">input</span><span class="p">();</span>
+</span><span class="line">    <span class="n">solve</span><span class="p">();</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">hadrori</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-18T15:01:19+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  Category: 
+  
+    <a class='category' href='/categories/aoj/'>AOJ</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="social">
+  <div class="hatena">
+    <a href="http://b.hatena.ne.jp/entry/http://algoogle.hadrori.jp/aoj/2313/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </div>
+  
+  <div class="twitter">
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://algoogle.hadrori.jp/aoj/2313/" data-via="hadrori" data-counturl="http://algoogle.hadrori.jp/aoj/2313/" >Tweet</a>
+  </div>
+  
+  
+  <div class="facebook">
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+  </div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/aoj/1086/" title="Previous Post: AOJ 1086 Live Schedule">&laquo; AOJ 1086 Live Schedule</a>
+      
+      
+        <a class="basic-alignment right" href="/aoj/2035/" title="Next Post: AOJ 2035 It Prefokery Pio">AOJ 2035 It Prefokery Pio &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/aoj/1083/">AOJ 1083 The Incubator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/aoj/2664/">AOJ 2664 Shopping</a>
+      </li>
+    
+      <li class="post">
+        <a href="/aoj/2674/">AOJ 2674 Disordered Data Detection</a>
+      </li>
+    
+      <li class="post">
+        <a href="/aoj/2666/">AOJ 2666 Arojam&#8217;s Mask</a>
+      </li>
+    
+      <li class="post">
+        <a href="/aoj/1266/">AOJ 1266 How I Wonder What You Are!</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li><a href='/categories/amppz'>AMPPZ (1)</a></li><li><a href='/categories/aoj'>AOJ (197)</a></li><li><a href='/categories/codefestival'>CodeFestival (1)</a></li><li><a href='/categories/codeforces'>Codeforces (38)</a></li><li><a href='/categories/icpc'>ICPC (7)</a></li><li><a href='/categories/joi'>JOI (58)</a></li><li><a href='/categories/kupc'>KUPC (1)</a></li><li><a href='/categories/livearchive'>LiveArchive (4)</a></li><li><a href='/categories/ontak'>ONTAK (2)</a></li><li><a href='/categories/pa'>PA (6)</a></li><li><a href='/categories/pku'>PKU (157)</a></li><li><a href='/categories/poi'>POI (4)</a></li><li><a href='/categories/projecteuler'>ProjectEuler (18)</a></li><li><a href='/categories/tdpc'>TDPC (20)</a></li><li><a href='/categories/topcoder'>TopCoder (3)</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/tags/aho-corasick' style='font-size: 101.46341463414635%'>aho-corasick(3)</a> <a href='/tags/articulation-point' style='font-size: 100.48780487804878%'>articulation-point(1)</a> <a href='/tags/bellman-ford' style='font-size: 101.46341463414635%'>bellman-ford(3)</a> <a href='/tags/bfs' style='font-size: 108.29268292682927%'>bfs(17)</a> <a href='/tags/bidirectional-search' style='font-size: 100.97560975609755%'>bidirectional-search(2)</a> <a href='/tags/big-integer' style='font-size: 100.97560975609755%'>big-integer(2)</a> <a href='/tags/binary-indexed-tree' style='font-size: 105.36585365853658%'>binary-indexed-tree(11)</a> <a href='/tags/binary-search' style='font-size: 116.58536585365854%'>binary-search(34)</a> <a href='/tags/bipartite-matching' style='font-size: 103.41463414634147%'>bipartite-matching(7)</a> <a href='/tags/brute-force' style='font-size: 106.34146341463415%'>brute-force(13)</a> <a href='/tags/centroid-decomposition' style='font-size: 100.48780487804878%'>centroid-decomposition(1)</a> <a href='/tags/compress' style='font-size: 102.4390243902439%'>compress(5)</a> <a href='/tags/data-structure' style='font-size: 105.85365853658537%'>data-structure(12)</a> <a href='/tags/dfs' style='font-size: 106.82926829268293%'>dfs(14)</a> <a href='/tags/dijkstra' style='font-size: 114.14634146341463%'>dijkstra(29)</a> <a href='/tags/divide-and-conquer' style='font-size: 101.46341463414635%'>divide-and-conquer(3)</a> <a href='/tags/doubling' style='font-size: 100.48780487804878%'>doubling(1)</a> <a href='/tags/dp' style='font-size: 160.0%'>dp(123)</a> <a href='/tags/euler-path' style='font-size: 100.48780487804878%'>euler-path(1)</a> <a href='/tags/expected-value' style='font-size: 100.48780487804878%'>expected-value(1)</a> <a href='/tags/fft' style='font-size: 100.97560975609755%'>fft(2)</a> <a href='/tags/geometry' style='font-size: 111.70731707317073%'>geometry(24)</a> <a href='/tags/graph' style='font-size: 100.97560975609755%'>graph(2)</a> <a href='/tags/graph-coloring' style='font-size: 100.48780487804878%'>graph-coloring(1)</a> <a href='/tags/greedy' style='font-size: 118.53658536585365%'>greedy(38)</a> <a href='/tags/grundy-number' style='font-size: 101.46341463414635%'>grundy-number(3)</a> <a href='/tags/heavy-light-decomposition' style='font-size: 100.48780487804878%'>heavy-light-decomposition(1)</a> <a href='/tags/imos-method' style='font-size: 101.95121951219512%'>imos-method(4)</a> <a href='/tags/implementation' style='font-size: 140.4878048780488%'>implementation(83)</a> <a href='/tags/inchworm-method' style='font-size: 103.41463414634147%'>inchworm-method(7)</a> <a href='/tags/inclusion-exclusion' style='font-size: 100.48780487804878%'>inclusion-exclusion(1)</a> <a href='/tags/line-sweep' style='font-size: 100.97560975609755%'>line-sweep(2)</a> <a href='/tags/longest-increasing-subsequence' style='font-size: 100.48780487804878%'>longest-increasing-subsequence(1)</a> <a href='/tags/lowest-common-ancestor' style='font-size: 102.4390243902439%'>lowest-common-ancestor(5)</a> <a href='/tags/math' style='font-size: 124.8780487804878%'>math(51)</a> <a href='/tags/matrix' style='font-size: 103.90243902439025%'>matrix(8)</a> <a href='/tags/max-flow' style='font-size: 105.85365853658537%'>max-flow(12)</a> <a href='/tags/min-cost-flow' style='font-size: 100.97560975609755%'>min-cost-flow(2)</a> <a href='/tags/minimum-steiner-tree' style='font-size: 100.48780487804878%'>minimum-steiner-tree(1)</a> <a href='/tags/modulo' style='font-size: 102.92682926829268%'>modulo(6)</a> <a href='/tags/parsing' style='font-size: 107.8048780487805%'>parsing(16)</a> <a href='/tags/probabilities' style='font-size: 101.95121951219512%'>probabilities(4)</a> <a href='/tags/probability' style='font-size: 100.48780487804878%'>probability(1)</a> <a href='/tags/queue' style='font-size: 100.48780487804878%'>queue(1)</a> <a href='/tags/randomized' style='font-size: 100.48780487804878%'>randomized(1)</a> <a href='/tags/rolling-hash' style='font-size: 100.48780487804878%'>rolling-hash(1)</a> <a href='/tags/segment-tree' style='font-size: 105.36585365853658%'>segment-tree(11)</a> <a href='/tags/self-balancing-binary-search-tree' style='font-size: 100.48780487804878%'>self-balancing-binary-search-tree(1)</a> <a href='/tags/slide-min-max' style='font-size: 100.48780487804878%'>slide-min-max(1)</a> <a href='/tags/spanning-tree' style='font-size: 103.90243902439025%'>spanning-tree(8)</a> <a href='/tags/sqrt-decomposition' style='font-size: 102.92682926829268%'>sqrt-decomposition(6)</a> <a href='/tags/stack' style='font-size: 100.97560975609755%'>stack(2)</a> <a href='/tags/string' style='font-size: 101.46341463414635%'>string(3)</a> <a href='/tags/strongly-connected-component' style='font-size: 103.41463414634147%'>strongly-connected-component(7)</a> <a href='/tags/topological-sort' style='font-size: 101.95121951219512%'>topological-sort(4)</a> <a href='/tags/tree' style='font-size: 106.82926829268293%'>tree(14)</a> <a href='/tags/union-find' style='font-size: 104.8780487804878%'>union-find(10)</a> <a href='/tags/warshall-floyd' style='font-size: 104.8780487804878%'>warshall-floyd(10)</a> <a href='/tags/wavelet-matrix' style='font-size: 100.97560975609755%'>wavelet-matrix(2)</a> <a href='/tags/zeller' style='font-size: 100.48780487804878%'>zeller(1)</a> </span>
+</section>
+<section>
+  <h1>Monthly Archives</h1>
+  <div class="monthly_archive"><ul class="year_list"><li class="year first_open">2015 (52)</li><ul class="month_list"><li class="month"><a href='/2015/10/'>OCT (15)</a></li><li class="month"><a href='/2015/09/'>SEP (7)</a></li><li class="month"><a href='/2015/08/'>AUG (9)</a></li><li class="month"><a href='/2015/05/'>MAY (7)</a></li><li class="month"><a href='/2015/04/'>APR (5)</a></li><li class="month"><a href='/2015/03/'>MAR (6)</a></li><li class="month"><a href='/2015/01/'>JAN (3)</a></li></ul><li class="year first_open">2014 (465)</li><ul class="month_list"><li class="month"><a href='/2014/11/'>NOV (8)</a></li><li class="month"><a href='/2014/10/'>OCT (19)</a></li><li class="month"><a href='/2014/09/'>SEP (42)</a></li><li class="month"><a href='/2014/08/'>AUG (32)</a></li><li class="month"><a href='/2014/07/'>JUL (16)</a></li><li class="month"><a href='/2014/06/'>JUN (11)</a></li><li class="month"><a href='/2014/05/'>MAY (337)</a></li></ul></ul></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - hadrori -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'algoogle';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://algoogle.hadrori.jp/aoj/2313/';
+        var disqus_url = 'http://algoogle.hadrori.jp/aoj/2313/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
