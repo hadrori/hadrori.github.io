@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: AOJ | Algoogle]]></title>
-  <link href="http://algoogle.hadrori.jp/categories/aoj/atom.xml" rel="self"/>
+  <title><![CDATA[Category: AdventCalendar | Algoogle]]></title>
+  <link href="http://algoogle.hadrori.jp/categories/adventcalendar/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
   <updated>2015-12-14T02:08:05+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
@@ -129,146 +129,6 @@ end
 <hr />
 
 <p>{% include_code AOJ/2597.cpp %}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AOJ 2597 Color the Map Extreme]]></title>
-    <link href="http://algoogle.hadrori.jp/aoj/2597/"/>
-    <updated>2015-12-14T00:32:26+09:00</updated>
-    <id>http://algoogle.hadrori.jp/aoj/2597</id>
-    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2597">Color the Map Extreme</a></p>
-
-<h4 id="section">問題概要</h4>
-
-<hr />
-
-<p>平面上にn(&lt;=35)個多角形がある．彩色数を求めよ．</p>
-
-<h4 id="section-1">解法</h4>
-
-<hr />
-
-<p>幾何パートは辺同士で線分と点の距離が0になる個数と端点がくっついてるかでみてます．</p>
-
-<ul>
-  <li>2個より多い: 辺がくっついてる</li>
-  <li>2個で端点がくっついてない: 辺がくっついてる</li>
-  <li>それ以外: 辺がくっついてない</li>
-</ul>
-
-<p>グラフができたら彩色数を求めます．<br />
-まず大前提として，できたグラフは平面グラフなので彩色数は最大でも4なので，グラフから極大独立集合を取ってきてそこの色を決めたら残りの部分は3色以下で塗れます．<br />
-極大独立集合とは互いに隣り合わない頂点の集合(独立集合)のうち，これ以上頂点を追加できないものです．<br />
-残ったグラフでは頂点がなければ0色，辺がなければ1色，2部グラフなら2色，それ以外なら3色とわかるので適当に塗っていけば何色で塗れるかわかります．<br />
-つまり極大独立集合を全列挙して試せばグラフの彩色数がわかります．</p>
-
-<p>極大独立集合は貪欲にやっていけば求まりますが，列挙する場合は最小次数の頂点かその隣接する頂点を選ぶかでやるといい感じになります．<br />
-もうちょっとだけ詳しく書こうとしたけどわかりづらくなったので擬似コード．詳しくはコード見て下さい(FCCPCのチームライブラリから取ってきたので僕が書いたわけではありませんが)．<br />
-前提条件として，SとTは空，Vはグラフの頂点集合が入ってます．事後条件はTは全ての極大独立集合の集合．</p>
-
-<p>&#8220;`
-set: S, T, V</p>
-
-<p>func f
-  if Vが空 then
-    TにSを追加
-  else then
-    v = Vにある頂点のうち最小次数の頂点1つ
-    Vからvとその近傍を取り除く(1)
-    Sにvを入れる
-    call f
-    Sからvを取り除く
-    Vに(1)で取り除いた頂点を戻す
-    for w in Vにある頂点のうちvに隣接する頂点
-      Vからwとその近傍を取り除く(2)
-      Sにwを入れる
-      call f
-      Sからwを取り除く
-      Vに(2)で取り除いた頂点を戻す
-    end
-  end
-end
-&#8220;`</p>
-
-<p>極大独立集合は最小の次数をkとしたとき {% m %}(k+1)^{\frac{n}{k+1}}{% em %} 個できる．これはk+1=eのとき最大になるが，kは整数なのでk+1=3の時が最大．<br />
-1つの極大独立集合を見つけるのに {% m %}O(n){% em %} なので，列挙の計算量は {% m %}n3^{\frac{n}{3}}{% em %}となる．<br />
-ちなみにグラフによってはこのアルゴリズムは一部の極大独立集合を重複して列挙しますが，それを含めた計算量です．</p>
-
-<p>極大独立集合を除いたグラフでの彩色数のチェックにはそれぞれ {% m %}O(n){% em %} かかるので，全体の計算量も {% m %}O(n3^{\frac{n}{3}}){% em %} となる．<br />
-35*3^(35/3)は10^7ぐらいなので間に合います．</p>
-
-<h4 id="section-2">コード</h4>
-
-<hr />
-
-<p>{% include_code AOJ/2597.cpp %}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AOJ 1083 The Incubator]]></title>
-    <link href="http://algoogle.hadrori.jp/aoj/1083/"/>
-    <updated>2015-10-18T16:26:37+09:00</updated>
-    <id>http://algoogle.hadrori.jp/aoj/1083</id>
-    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1083">The Incubator</a></p>
-
-<h4 id="section">問題概要</h4>
-
-<hr />
-
-<p>以下のクエリをQ個を捌く</p>
-
-<ul>
-  <li>新しい個体に番号xを割り当てて列の末尾に入れる</li>
-  <li>列のx番目の個体を列から取り除く</li>
-  <li>列のx番目の個体番号を出力する</li>
-  <li>番号xの個体を列から取り除く</li>
-</ul>
-
-<h4 id="section-1">解法</h4>
-
-<hr />
-
-<p>BITで列に入っているかを管理する．<br />
-削除はその位置に-1, 追加は末尾に1を加える．<br />
-1が立っている位置のうち左からx番目というのは2分探索すれば求まる．<br />
-番号xの位置はmapで持って，位置yの番号は配列で持てば良い．</p>
-
-<h4 id="section-2">コード</h4>
-
-<hr />
-
-<p>{% include_code AOJ/1083.cpp %}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AOJ 2664 Shopping]]></title>
-    <link href="http://algoogle.hadrori.jp/aoj/2664/"/>
-    <updated>2015-10-18T16:17:58+09:00</updated>
-    <id>http://algoogle.hadrori.jp/aoj/2664</id>
-    <content type="html"><![CDATA[<p><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2664">Shopping</a></p>
-
-<h4 id="section">問題概要</h4>
-
-<hr />
-
-<p>N個の材料がある．i番目の材料はx[i]円で買える．<br />
-幾つかの材料は魔法で別の材料にすることができる．AからBにできるならBからAにもできる．<br />
-必要な材料費の最小を求めよ．</p>
-
-<h4 id="section-1">解法</h4>
-
-<hr />
-
-<p>Union Fnidで関係をマージしてグループ中の最小額を採用すればいい．</p>
-
-<h4 id="section-2">コード</h4>
-
-<hr />
-
-<p>{% include_code AOJ/2664.cpp %}</p>
 ]]></content>
   </entry>
   
