@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: grundy-number | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/grundy-number/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-10-18T19:24:20+09:00</updated>
+  <updated>2015-12-14T01:48:09+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -78,7 +78,7 @@ Nimはxorとって0以外だったら必勝.<br />
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">x</span> <span class="o">^=</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="p">)</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
@@ -91,7 +91,7 @@ Nimはxorとって0以外だったら必勝.<br />
 </span><span class='line'>    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">),</span> <span class="n">n</span><span class="p">){</span>
 </span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
@@ -280,7 +280,7 @@ Nimはxorとるだけ.</p>
 </span><span class='line'><span class="kt">int</span> <span class="n">v</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">id</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">nim</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
 </span><span class='line'><span class="n">vi</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">){</span>
@@ -292,7 +292,7 @@ Nimはxorとるだけ.</p>
 </span><span class='line'>    <span class="n">memset</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">build_id</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">build_id</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
 </span><span class='line'>    <span class="kt">bool</span> <span class="n">used</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="n">used</span><span class="p">[</span><span class="n">build_id</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -302,7 +302,7 @@ Nimはxorとるだけ.</p>
 </span><span class='line'>    <span class="k">return</span> <span class="n">id</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">--</span><span class="n">k</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="n">build_id</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">maxId</span><span class="p">)</span>
 </span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
@@ -312,7 +312,7 @@ Nimはxorとるだけ.</p>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: bellman-ford | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/bellman-ford/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-10-18T19:24:20+09:00</updated>
+  <updated>2015-12-14T01:48:09+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -104,14 +104,14 @@ dp[i] := 頂点iから終点までで追加される呪文の接尾辞の最小<
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">G</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
 </span><span class='line'><span class="n">string</span> <span class="n">dp</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">string</span> <span class="nf">solve</span><span class="p">()</span>
+</span><span class='line'><span class="n">string</span> <span class="n">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">lim</span> <span class="o">=</span> <span class="mi">6</span><span class="o">*</span><span class="n">n</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">lp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">lp</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="o">*</span><span class="n">n</span><span class="p">;</span> <span class="n">lp</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="kt">bool</span> <span class="n">updated</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">g</span> <span class="n">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
 </span><span class='line'>                                <span class="k">if</span><span class="p">((</span><span class="n">e</span><span class="p">.</span><span class="n">first</span> <span class="o">!=</span> <span class="n">g</span> <span class="n">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="n">or</span>
 </span><span class='line'>                                   <span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">second</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
 </span><span class='line'>                                        <span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">second</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
@@ -126,7 +126,7 @@ dp[i] := 頂点iから終点までで追加される呪文の接尾辞の最小<
 </span><span class='line'>        <span class="k">return</span> <span class="s">&quot;NO&quot;</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">bool</span> <span class="nf">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">bool</span> <span class="n">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">(),</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">g</span><span class="p">;</span>
@@ -138,7 +138,7 @@ dp[i] := 頂点iから終点までで追加される呪文の接尾辞の最小<
 </span><span class='line'>        <span class="k">return</span> <span class="n">n</span> <span class="n">or</span> <span class="n">m</span> <span class="n">or</span> <span class="n">s</span> <span class="n">or</span> <span class="n">g</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">input</span><span class="p">())</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -236,7 +236,7 @@ Bellman-Fordでは負閉路がなければ更新は|V|-1回以下のループで
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
 </span><span class='line'><span class="kt">int</span> <span class="n">dist</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">F</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">F</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">F</span><span class="o">--</span><span class="p">){</span>
@@ -257,7 +257,7 @@ Bellman-Fordでは負閉路がなければ更新は|V|-1回以下のループで
 </span><span class='line'>            <span class="n">edge</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">pii</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="n">b</span><span class="p">));</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
@@ -271,7 +271,7 @@ Bellman-Fordでは負閉路がなければ更新は|V|-1回以下のループで
 </span><span class='line'>                        <span class="p">}</span>
 </span><span class='line'>                    <span class="p">}</span>
 </span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>    <span class="nl">end</span><span class="p">:</span>
+</span><span class='line'>    <span class="nl">end:</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;YES&quot;</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">else</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;NO&quot;</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
@@ -387,7 +387,7 @@ dist[i] + l(i, j) &gt;= dist[j]<br /></p>
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
 </span><span class='line'><span class="kt">int</span> <span class="n">dist</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span> <span class="c1">// distance between 0 and i</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cnt</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">cnt</span><span class="o">++</span><span class="p">){</span>
 </span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
@@ -399,7 +399,7 @@ dist[i] + l(i, j) &gt;= dist[j]<br /></p>
 </span><span class='line'>    <span class="k">return</span> <span class="n">dist</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ML</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">MD</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">){</span>
 </span><span class='line'>        <span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">pii</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
