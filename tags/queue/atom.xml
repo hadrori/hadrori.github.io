@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: queue | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/queue/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-12-14T02:08:05+09:00</updated>
+  <updated>2015-12-14T02:16:27+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -39,7 +39,84 @@
 
 <hr />
 
-<p>{% include_code AOJ/1297.cpp %}</p>
+<p><figure class='code'><figcaption><span> (1297.cpp)</span> <a href='/downloads/code/AOJ/1297.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define repi(i,a,b) for(int i = (int)(a); i &lt; (int)(b); i++)</span>
+</span><span class='line'><span class="cp">#define rep(i,a) repi(i,0,a)</span>
+</span><span class='line'><span class="cp">#define all(u) begin(u),end(u)</span>
+</span><span class='line'><span class="cp">#define pb push_back</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">swimmer</span><span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">swimmer</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span><span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">v</span><span class="p">;}</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'>    <span class="n">queue</span><span class="o">&lt;</span><span class="n">swimmer</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">que</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">push</span><span class="p">((</span><span class="n">swimmer</span><span class="p">){</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">empty</span><span class="p">()</span> <span class="n">or</span> <span class="o">!</span><span class="n">que</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">empty</span><span class="p">()){</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">que</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">empty</span><span class="p">()</span> <span class="n">or</span> <span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">que</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">front</span><span class="p">().</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">que</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">front</span><span class="p">().</span><span class="n">t</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">ans</span> <span class="o">=</span> <span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">front</span><span class="p">().</span><span class="n">t</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="n">swimmer</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">front</span><span class="p">().</span><span class="n">t</span> <span class="o">&lt;=</span> <span class="n">ans</span><span class="p">){</span>
+</span><span class='line'>            <span class="n">s</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">front</span><span class="p">());</span> <span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">pop</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">sort</span><span class="p">(</span><span class="n">all</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+</span><span class='line'>        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">res</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">que</span><span class="p">[</span><span class="n">f</span><span class="o">^</span><span class="mi">1</span><span class="p">].</span><span class="n">push</span><span class="p">((</span><span class="n">swimmer</span><span class="p">){</span><span class="n">ans</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">res</span><span class="o">-</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">signed</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

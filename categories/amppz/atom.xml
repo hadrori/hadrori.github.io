@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AMPPZ | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/categories/amppz/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-12-14T02:08:05+09:00</updated>
+  <updated>2015-12-14T02:16:27+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -42,85 +42,294 @@
 ただ入力を1つづつ受け取るのが面倒+いらない部分を高速に読み飛ばすテクを知らない(そうしないとTLE)ということもあり入力をstringに突っ込んでいる.<br />
 これをやるとジャッジではREになるが手元で合うので良しとした.</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>f(a,h,t_{down},t_{up}) := 辺をa本辿って高さhになるのにかかる時間<br />
 f(a,h,t_{down},t_{up}) = \frac{a+h}{2}t_{down}+\frac{a-h}{2}t_{up}</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>ただしa, hは実数を許す.<br />
 こうすると2匹が初めて出会う時刻について以下の式が成り立つ</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>f(a_{1},h_{1},2,1) = f(2n-a_{1},h_{1},1,\frac{1}{2})</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>実数を扱うのはつらい.<br />
 入力を順に読みながら辺ごとに進めていきたい.<br />
 現在の辺をa, 高さをh, 上り下りかをbとする.<br />
 辺上で中途半端に進んでいる場合, その割合をeとすると</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>a_{1} = a+e<br />
 h_{1} = h+be</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>前の等式と合わせると</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>e = \frac{6n-9a-h}{9+b}<br />
 t_{1} = \frac{3a_{1}+h_{1}}{2}</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>これが0以上1未満の場合, 1回目の出会いの辺にいることがわかる. tは時間<br />
 左の蟻が次に地面にぶつかるのは同じ経路を戻るので辺と高さから整理すると</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>f(a_{1},-h_{1},2,1) = t_{1}-h_{1}</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>1回目から2回目の邂逅までにかかる時間について同様に式を立てると</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>a_2 = a+e<br />
 h_2 = h+be\ 
 f(a_{1},-h_{1},2,1)+f(2n-a_{2},h_{2},2,1) = f(a_{2}-a_{1},h_{2}-h_{1},1,\frac{1}{2})</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>よって</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>e=\frac{12n-9(a-a_{1})+(h-h_{1})}{9-b}</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <p>となる. これが0以上1未満のとき, 2回目の出会いになる.<br />
 あとは時間を計算すると</p>
 
-<p>{% math %}</p>
+<p><script type="math/tex; mode=display"></p>
 
 <p>t_{2}=\frac{3(a_{2}-a_{1})+(h_{2}-h_{1})}{4}<br />
 t_{1}+t_{2}=\frac{3(a_{1}+a_{2})+(h_{1}+h_{2})}{4}</p>
 
-<p>{% endmath %}</p>
+<p></script></p>
 
 <h4 id="section-2">コード</h4>
 
 <hr />
 
-<p>{% include_code AMPPZ/2011/ants.cpp %}</p>
+<p><figure class='code'><figcaption><span> (ants.cpp)</span> <a href='/downloads/code/AMPPZ/2011/ants.cpp'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">struct</span> <span class="n">frac</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="kt">long</span> <span class="kt">long</span> <span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">frac</span><span class="p">(){}</span>
+</span><span class='line'>        <span class="n">frac</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">)</span> <span class="o">:</span> <span class="n">num</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">den</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;}</span>
+</span><span class='line'>        <span class="n">frac</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">num</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">den</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="n">normalize</span><span class="p">();}</span>
+</span><span class='line'>        <span class="kt">void</span> <span class="n">normalize</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="n">den</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">den</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="n">num</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                        <span class="n">den</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">num</span><span class="p">),</span><span class="n">den</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">num</span> <span class="o">/=</span> <span class="n">t</span><span class="p">;</span> <span class="n">den</span> <span class="o">/=</span> <span class="n">t</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>                <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">den</span><span class="p">,</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">)),</span> <span class="n">u</span> <span class="o">=</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">,</span><span class="n">abs</span><span class="p">(</span><span class="n">num</span><span class="p">));</span>
+</span><span class='line'>                <span class="n">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">/</span><span class="n">u</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="o">/</span><span class="n">t</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">den</span> <span class="o">=</span> <span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="o">/</span><span class="n">u</span><span class="p">;</span>
+</span><span class='line'>                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">frac</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span> <span class="o">*=</span> <span class="n">f</span><span class="p">;}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">){</span> <span class="k">return</span> <span class="n">frac</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span><span class="o">*=</span><span class="n">frac</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">);}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">frac</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span><span class="o">/=</span><span class="n">f</span><span class="p">;}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">){</span>
+</span><span class='line'>                <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">den</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">num</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">num</span><span class="o">+</span><span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">den</span> <span class="o">=</span> <span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">normalize</span><span class="p">();</span>
+</span><span class='line'>                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">frac</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span><span class="o">+=</span><span class="n">f</span><span class="p">;}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">){</span>
+</span><span class='line'>                <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">den</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">num</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">num</span><span class="o">-</span><span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">den</span> <span class="o">=</span> <span class="n">den</span><span class="o">/</span><span class="n">t</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">normalize</span><span class="p">();</span>
+</span><span class='line'>                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">frac</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span><span class="o">-=</span><span class="n">f</span><span class="p">;}</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">num</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span> <span class="o">&lt;</span> <span class="n">den</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">;}</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">num</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span> <span class="o">&gt;</span> <span class="n">den</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">;}</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">num</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span> <span class="o">&gt;</span> <span class="n">den</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">);}</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">num</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span> <span class="o">&lt;</span> <span class="n">den</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">);}</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">num</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">den</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">;}</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">frac</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">os</span><span class="o">&lt;&lt;</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="o">&lt;&lt;</span><span class="s">&quot;/&quot;</span><span class="o">&lt;&lt;</span><span class="n">f</span><span class="p">.</span><span class="n">den</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">const</span> <span class="n">string</span> <span class="n">hx</span> <span class="o">=</span> <span class="s">&quot;0123456789abcdef&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">cur</span><span class="p">;</span>
+</span><span class='line'><span class="n">string</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">inline</span> <span class="kt">int</span> <span class="n">next</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">(</span><span class="n">hx</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">cur</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="n">cur</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span> <span class="mi">1</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">frac</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="n">cur</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">pb</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">a1</span><span class="p">,</span> <span class="n">h1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">next</span><span class="p">();</span>
+</span><span class='line'>                <span class="k">const</span> <span class="n">frac</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">frac</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="mi">9</span><span class="o">-</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">frac</span><span class="p">(</span><span class="mi">9</span><span class="o">+</span><span class="n">b</span><span class="p">);</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">frac</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="n">and</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="n">frac</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="n">a1</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">e</span><span class="p">;</span>
+</span><span class='line'>                        <span class="n">h1</span> <span class="o">=</span> <span class="n">h</span><span class="o">+</span><span class="n">e</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
+</span><span class='line'>                        <span class="n">cur</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>                        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="n">h</span> <span class="o">+=</span> <span class="n">b</span><span class="p">;</span> <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">frac</span> <span class="n">ret</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(;</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">;</span> <span class="n">a</span><span class="o">+=</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">next</span><span class="p">();</span>
+</span><span class='line'>                <span class="k">const</span> <span class="n">frac</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">frac</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="mi">9</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">frac</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="n">and</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="n">frac</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="p">((</span><span class="n">a1</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="n">h1</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="n">e</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">h</span> <span class="o">=</span> <span class="n">h</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">((</span><span class="n">a1</span><span class="o">+</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">t</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">t</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
