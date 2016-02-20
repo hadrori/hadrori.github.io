@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: rolling-hash | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/rolling-hash/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-12-14T02:54:13+09:00</updated>
+  <updated>2016-02-20T13:53:25+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -83,7 +83,7 @@ rolling-hash法で文字列を圧縮してO(1)で比較と生成を行えるよ�
 </span><span class='line'><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
 </span><span class='line'><span class="n">ull</span> <span class="n">powb</span><span class="p">[</span><span class="mi">300010</span><span class="p">],</span> <span class="n">shash</span><span class="p">[</span><span class="mi">300010</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="mi">300010</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">powb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>        <span class="n">powb</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">powb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
@@ -102,7 +102,7 @@ rolling-hash法で文字列を圧縮してO(1)で比較と生成を行えるよ�
 </span><span class='line'>    <span class="k">return</span> <span class="n">unique</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">S</span><span class="o">+</span><span class="n">M</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">signed</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">signed</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">M</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>

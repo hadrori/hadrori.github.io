@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Codeforces | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/categories/codeforces/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2015-12-14T02:54:13+09:00</updated>
+  <updated>2016-02-20T13:53:25+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -233,7 +233,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">bl</span><span class="p">,</span> <span class="n">br</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dir</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">segtree</span> <span class="n">st</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">bl</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">br</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
@@ -263,12 +263,12 @@
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
@@ -380,9 +380,9 @@ n &gt; kのとき, すくなくとも1つの行で反転が起こらない. こ�
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">128</span><span class="p">][</span><span class="mi">128</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kr">inline</span> <span class="kt">int</span> <span class="n">ith</span><span class="p">(</span><span class="kt">int</span> <span class="n">bit</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span> <span class="k">return</span> <span class="p">((</span><span class="n">bit</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">);}</span>
+</span><span class='line'><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">ith</span><span class="p">(</span><span class="kt">int</span> <span class="n">bit</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span> <span class="k">return</span> <span class="p">((</span><span class="n">bit</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">);}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve_s</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve_s</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -398,7 +398,7 @@ n &gt; kのとき, すくなくとも1つの行で反転が起こらない. こ�
 </span><span class='line'>        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve_l</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve_l</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">ii</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -416,7 +416,7 @@ n &gt; kのとき, すくなくとも1つの行で反転が起こらない. こ�
 </span><span class='line'>        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">solve_s</span><span class="p">();</span>
@@ -424,7 +424,7 @@ n &gt; kのとき, すくなくとも1つの行で反転が起こらない. こ�
 </span><span class='line'>        <span class="k">return</span> <span class="n">ans</span><span class="o">&gt;</span><span class="n">k</span><span class="o">?</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
@@ -432,7 +432,7 @@ n &gt; kのとき, すくなくとも1つの行で反転が起こらない. こ�
 </span><span class='line'>                        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -527,7 +527,7 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">l</span><span class="o">++</span><span class="p">)</span>
@@ -558,14 +558,14 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -772,7 +772,7 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">segtree</span> <span class="n">st</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">m</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
@@ -785,12 +785,12 @@ k回要素の位置をswapできるとき, 最大はいくらになるか.</p>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">signed</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">signed</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -921,12 +921,12 @@ bは擬似乱数によって生成されるので悪意ある入力は考慮し�
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">100010</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">100010</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">100010</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">100010</span><span class="p">];</span>
 </span><span class='line'><span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kr">inline</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">getx</span><span class="p">()</span>
+</span><span class='line'><span class="kr">inline</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nf">getx</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">return</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">37</span><span class="o">+</span><span class="mi">10007</span><span class="p">)</span><span class="o">%</span><span class="mi">1000000007</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">gen</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">gen</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
@@ -941,20 +941,20 @@ bは擬似乱数によって生成されるので悪意ある入力は考慮し�
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve_s</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve_s</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ok</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">ok</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">ok</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">ok</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                        <span class="k">if</span><span class="p">(</span><span class="n">e</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
 </span><span class='line'>                        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">e</span><span class="p">]);</span>
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve_l</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve_l</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
@@ -967,11 +967,11 @@ bは擬似乱数によって生成されるので悪意ある入力は考慮し�
 </span><span class='line'>                        <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="n">c</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 </span><span class='line'>                        <span class="k">else</span> <span class="n">next</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 </span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">next</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">next</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">gen</span><span class="p">();</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">&lt;=</span> <span class="n">D</span><span class="p">)</span> <span class="n">solve_s</span><span class="p">();</span>
@@ -980,12 +980,12 @@ bは擬似乱数によって生成されるので悪意ある入力は考慮し�
 </span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">d</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
