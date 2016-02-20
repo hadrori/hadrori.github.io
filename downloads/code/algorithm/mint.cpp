@@ -35,6 +35,5 @@ ostream &operator<<(ostream& os, const mint &m) { os << m.x; return os; }
 mint inv[MAX];
 void gen_inv(int n) {
     inv[1] = 1;
-    for(int i = 2; i < n; ++i) mod_inv[i] = inv[mod%i]*mint(mod-mod/i);
+    for(int i = 2; i < n; ++i) inv[i] = inv[mod%i]*mint(mod-mod/i);
 }
-

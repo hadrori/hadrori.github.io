@@ -1,73 +1,72 @@
-const int N = 200000;
+namespace HLD {
+const int N = 200010;
+vector<vector<int>> chains, childs;
+int V, dep[N], par[N], heavy[N], head[N], chain[N], id[N], size[N], q[N];
 
-// non directional tree
-vector<int> G[N];
-int val[N]; // number of nodes, value of node(only for init)
-int dep[N], par[N], size[N]; // depth, parent, size
-int heavy[N], head[N]; // next heavy node, head of chain
-int chain[N], id[N]; // belong, index in chain
-
-struct HL_Decomposition {
-    int n;
-    vector<vector<int>> chains, vals;
-
-    // default root is vertex 0
-    void hl_bfs(int rt = 0) {
-        par[rt] = -1;
-        dep[rt] = 0;
-        int q[N], l = 0, r = 0;
-        q[r++] = rt;
-        while(l < r) {
-            const int &v = q[l++];
-            for(auto &w: G[v]) {
-                if(w == par[v]) continue;
-                par[w] = v;
-                dep[w] = dep[v]+1;
-                q[r++] = w;
+void calc_heavy() {
+    int root = -1;
+    childs.assign(V,vector<int>());
+    for(int v = 0; v < V; v++) {
+        size[v] = 0;
+        heavy[v] = -1;
+        if(par[v] < 0) root = v;
+        else childs[par[v]].push_back(v);
+    }
+    int l = 0, r = 0;
+    q[r++] = root;
+    while(l < r) {
+        int v = q[l++];
+        for(auto &w: childs[v]) {
+            if(w == par[v]) continue;
+            dep[w] = dep[v]+1;
+            q[r++] = w;
+        }
+    }
+    reverse(q,q+V);
+    for(int i = 1; i < V; i++) {
+        int v = q[i], &u = par[v];
+        size[u] += ++size[v];
+        if(heavy[u] == -1 or size[v] > size[heavy[u]]) heavy[u] = v;
+    }
+}
+void calc_chain() {
+    chains.clear();
+    int idx = 0;
+    for (int v = 0; v < V; v++) {
+        if(par[v] < 0 or heavy[par[v]] != v) {
+            chains.push_back(vector<int>());
+            for (int w = v; w != -1; w = heavy[w]) {
+                chain[w] = idx;
+                head[w] = v;
+                id[w] = chains.back().size();
+                chains.back().push_back(w);
             }
-        }
-        memset(size,0,sizeof(size));
-        memset(heavy,-1,sizeof(heavy));
-        for (int i = n-1; i > 0 ; i--) {
-            const int &v = q[i], &u = par[v];
-            size[u] += ++size[v];
-            if(heavy[u] == -1 or size[v] > size[heavy[u]]) heavy[u] = v;
-        }
-        chains.clear();
-        vals.clear();
-        int idx = 0;
-        for (int v = 0; v < n; v++) {
-            if(par[v] < 0 or heavy[par[v]] != v) {
-                chains.push_back(vector<int>());
-                vals.push_back(vector<int>());
-                for (int w = v; w != -1; w = heavy[w]) {
-                    chain[w] = idx;
-                    head[w] = v;
-                    id[w] = chains.back().size();
-                    chains.back().push_back(w);
-                    vals.back().push_back(val[w]);
-                }
-                idx++;
-            }
+            idx++;
         }
     }
-    HL_Decomposition(){}
-    HL_Decomposition(int n) : n(n) {}
-
-    // do exec after use
-    void new_val(int i, int v) { val[i] = v; }
-    void add_edge(int u, int v) {
-        G[u].push_back(v);
-        G[v].push_back(u);
+}
+void make_par(const vector<vector<int>> &g, int root = 0) {
+    memset(par,-1,sizeof(par));
+    par[root] = 0;
+    int l = 0, r = 0;
+    q[r++] = root;
+    while(l < r) {
+        int v = q[l++];
+        for(const int &w: g[v]) if(par[w] < 0) q[r++] = w, par[w] = v;
     }
-    void exec() { hl_bfs();}
-
-    // can not use before exec
-    int lca(int u, int v) {
-        while (chain[u] != chain[v]) {
-            if (dep[head[u]] > dep[head[v]]) swap(u,v);
-            v = par[head[v]];
-        }
-        return dep[u] < dep[v]? u: v;
+    par[root] = -1;
+}
+void build(const vector<vector<int>> &g, int root = 0) {
+    V = g.size();
+    make_par(g,root);
+    calc_heavy();
+    calc_chain();
+}
+int lca(int u, int v) {
+    while (chain[u] != chain[v]) {
+        if (dep[head[u]] > dep[head[v]]) swap(u,v);
+        v = par[head[v]];
     }
-};
+    return dep[u] < dep[v]? u: v;
+}
+}
