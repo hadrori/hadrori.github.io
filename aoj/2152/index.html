@@ -269,16 +269,16 @@ Tag: <span class="tags">
 </span><span class="line"><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
 </span><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">10005</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">init</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">init</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">id</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 </span><span class="line">    <span class="n">memset</span><span class="p">(</span><span class="n">deleted</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">deleted</span><span class="p">));</span>
 </span><span class="line">    <span class="n">id</span><span class="p">[</span><span class="n">M</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line">    <span class="n">deleted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">    <span class="n">deleted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span><span class="line">    <span class="n">data</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 </span><span class="line">    <span class="n">data</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">pii</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">INF</span><span class="o">+</span><span class="mi">10</span><span class="p">));</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">write</span><span class="p">(</span><span class="kt">int</span> <span class="n">cnt</span><span class="p">){</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">write</span><span class="p">(</span><span class="kt">int</span> <span class="n">cnt</span><span class="p">){</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">s</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
 </span><span class="line">    <span class="n">id</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">;</span>
 </span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()){</span>
@@ -299,7 +299,7 @@ Tag: <span class="tags">
 </span><span class="line">    <span class="k">return</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">read</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">read</span><span class="p">(){</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">;</span>
 </span><span class="line">    <span class="n">p</span><span class="o">++</span><span class="p">;</span>
 </span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()){</span>
@@ -310,13 +310,13 @@ Tag: <span class="tags">
 </span><span class="line">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">del</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">del</span><span class="p">(){</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">l</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span><span class="p">;</span>
 </span><span class="line">    <span class="n">l</span> <span class="o">=</span> <span class="n">id</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
-</span><span class="line">    <span class="n">deleted</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">    <span class="n">deleted</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class="line">    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">){</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">        <span class="n">init</span><span class="p">();</span>

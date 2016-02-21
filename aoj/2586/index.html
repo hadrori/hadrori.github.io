@@ -276,9 +276,9 @@ Tag: <span class="tags">
 </span><span class="line"><span class="n">vector</span><span class="o">&lt;</span><span class="n">star</span><span class="o">&gt;</span> <span class="n">stars</span><span class="p">;</span>
 </span><span class="line"><span class="kt">double</span> <span class="n">die</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 </span><span class="line">
-</span><span class="line"><span class="kr">inline</span> <span class="kt">bool</span> <span class="n">valid</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">double</span> <span class="n">c</span><span class="p">){</span> <span class="k">return</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="o">+</span><span class="mf">1e-8</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;}</span>
+</span><span class="line"><span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">valid</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">double</span> <span class="n">c</span><span class="p">){</span> <span class="k">return</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="o">+</span><span class="mf">1e-8</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">double</span> <span class="n">collide_time</span><span class="p">(</span><span class="k">const</span> <span class="n">star</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">star</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
+</span><span class="line"><span class="kt">double</span> <span class="nf">collide_time</span><span class="p">(</span><span class="k">const</span> <span class="n">star</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">star</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">y</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">z</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">r</span><span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">r</span><span class="p">;</span>
 </span><span class="line">        <span class="kt">double</span> <span class="n">vx</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">vx</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">vx</span><span class="p">,</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">vy</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">vy</span><span class="p">,</span> <span class="n">vz</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">vz</span><span class="o">-</span><span class="n">t</span><span class="p">.</span><span class="n">vz</span><span class="p">,</span> <span class="n">vr</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">vr</span><span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">vr</span><span class="p">;</span>
@@ -295,10 +295,10 @@ Tag: <span class="tags">
 </span><span class="line">                        <span class="n">f</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class="line">                <span class="p">}</span>
 </span><span class="line">        <span class="p">}</span>
-</span><span class="line">        <span class="k">return</span> <span class="n">f</span><span class="o">?</span> <span class="nl">ret:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">f</span><span class="o">?</span> <span class="nl">ret</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">                <span class="n">star</span> <span class="o">&amp;</span><span class="n">s</span> <span class="o">=</span> <span class="n">stars</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
@@ -310,7 +310,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="p">}</span>
 </span><span class="line">        <span class="n">sort</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">events</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">events</span><span class="p">));</span>
 </span><span class="line">
-</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">events</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">events</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">die</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">u</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">die</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
 </span><span class="line">                        <span class="n">die</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">die</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">t</span><span class="p">;</span>
 </span><span class="line">                <span class="p">}</span>
@@ -320,7 +320,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="p">}</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">init</span><span class="p">()</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">init</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">                <span class="n">die</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -329,7 +329,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="n">stars</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">bool</span> <span class="n">input</span><span class="p">()</span>
+</span><span class="line"><span class="kt">bool</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
 </span><span class="line">        <span class="n">init</span><span class="p">();</span>
@@ -341,7 +341,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="k">while</span><span class="p">(</span><span class="n">input</span><span class="p">())</span> <span class="n">solve</span><span class="p">();</span>
 </span><span class="line">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>

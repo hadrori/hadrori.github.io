@@ -257,7 +257,7 @@ kが偶数階で先攻が負けることしか出来ない場合は負け負け�
 </span><span class="line">    <span class="o">~</span><span class="n">PMA</span><span class="p">(){</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">delete</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">];}</span>
 </span><span class="line"><span class="p">};</span>
 </span><span class="line">
-</span><span class="line"><span class="n">PMA</span> <span class="o">*</span><span class="n">buildPMA</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">pattern</span><span class="p">){</span>
+</span><span class="line"><span class="n">PMA</span> <span class="o">*</span><span class="nf">buildPMA</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">pattern</span><span class="p">){</span>
 </span><span class="line">    <span class="n">PMA</span> <span class="o">*</span><span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PMA</span><span class="p">,</span> <span class="o">*</span><span class="n">now</span><span class="p">;</span>
 </span><span class="line">    <span class="n">root</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
 </span><span class="line">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pattern</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
@@ -272,7 +272,7 @@ kが偶数階で先攻が負けることしか出来ない場合は負け負け�
 </span><span class="line">    <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">rec</span><span class="p">(</span><span class="n">PMA</span> <span class="o">*</span><span class="n">pma</span><span class="p">){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">rec</span><span class="p">(</span><span class="n">PMA</span> <span class="o">*</span><span class="n">pma</span><span class="p">){</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">win</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">ni</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="kt">int</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
@@ -291,20 +291,20 @@ kが偶数階で先攻が負けることしか出来ない場合は負け負け�
 </span><span class="line"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
 </span><span class="line"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ss</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">PMA</span> <span class="o">*</span><span class="n">root</span> <span class="o">=</span> <span class="n">buildPMA</span><span class="p">(</span><span class="n">ss</span><span class="p">);</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">rec</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">win</span> <span class="o">=</span> <span class="n">f</span><span class="o">&amp;</span><span class="mi">2</span><span class="p">,</span> <span class="n">lose</span> <span class="o">=</span> <span class="n">f</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">;</span>
 </span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="n">win</span> <span class="n">and</span> <span class="n">lose</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="n">win</span> <span class="n">and</span> <span class="n">k</span><span class="o">%</span><span class="mi">2</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">);</span>
 </span><span class="line">    <span class="n">ss</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ss</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">input</span><span class="p">();</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">solve</span><span class="p">())</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;First&quot;</span><span class="p">);</span>
 </span><span class="line">    <span class="k">else</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Second&quot;</span><span class="p">);</span>

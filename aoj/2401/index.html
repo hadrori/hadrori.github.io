@@ -358,16 +358,16 @@ Tag: <span class="tags">
 </span><span class="line"><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">id</span><span class="p">;</span>
 </span><span class="line"><span class="kt">int</span> <span class="n">cnt</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">char</span> <span class="n">rogic</span><span class="p">(</span><span class="kt">char</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="n">b</span><span class="p">,</span> <span class="kt">char</span> <span class="n">op</span><span class="p">){</span>
-</span><span class="line">    <span class="kt">bool</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="sc">&#39;T&#39;</span><span class="p">)</span><span class="o">?</span> <span class="kc">true</span><span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">    <span class="kt">bool</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span><span class="sc">&#39;T&#39;</span><span class="p">)</span><span class="o">?</span> <span class="kc">true</span><span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line"><span class="kt">char</span> <span class="nf">rogic</span><span class="p">(</span><span class="kt">char</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="n">b</span><span class="p">,</span> <span class="kt">char</span> <span class="n">op</span><span class="p">){</span>
+</span><span class="line">    <span class="kt">bool</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="sc">&#39;T&#39;</span><span class="p">)</span><span class="o">?</span> <span class="nb">true</span><span class="o">:</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class="line">    <span class="kt">bool</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span><span class="sc">&#39;T&#39;</span><span class="p">)</span><span class="o">?</span> <span class="nb">true</span><span class="o">:</span> <span class="nb">false</span><span class="p">;</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="n">x</span><span class="o">?</span> <span class="sc">&#39;T&#39;</span><span class="o">:</span> <span class="sc">&#39;F&#39;</span><span class="p">);</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="o">?</span> <span class="sc">&#39;T&#39;</span><span class="o">:</span> <span class="sc">&#39;F&#39;</span><span class="p">);</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">|</span><span class="n">y</span><span class="o">?</span> <span class="sc">&#39;T&#39;</span><span class="o">:</span> <span class="sc">&#39;F&#39;</span><span class="p">);</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="sc">&#39;&gt;&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="n">y</span><span class="o">?</span> <span class="sc">&#39;T&#39;</span><span class="o">:</span> <span class="sc">&#39;F&#39;</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">bool</span> <span class="n">calc</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">eq</span><span class="p">){</span>
+</span><span class="line"><span class="kt">bool</span> <span class="nf">calc</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">eq</span><span class="p">){</span>
 </span><span class="line">    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">cnt</span><span class="p">){</span>
 </span><span class="line">        <span class="n">string</span> <span class="n">left</span> <span class="o">=</span> <span class="n">eq</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
 </span><span class="line">        <span class="n">string</span> <span class="n">right</span> <span class="o">=</span> <span class="n">eq</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
@@ -398,12 +398,12 @@ Tag: <span class="tags">
 </span><span class="line">                <span class="n">cur</span><span class="o">-=</span><span class="mi">2</span><span class="p">;</span>
 </span><span class="line">            <span class="p">}</span>
 </span><span class="line">        <span class="p">}</span>
-</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">!=</span><span class="n">right</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">!=</span><span class="n">right</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 </span><span class="line">    <span class="p">}</span>
-</span><span class="line">    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="n">string</span> <span class="n">formula</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">){</span>
+</span><span class="line"><span class="n">string</span> <span class="nf">formula</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">){</span>
 </span><span class="line">    <span class="n">string</span> <span class="n">ret</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">    <span class="kt">char</span> <span class="n">op</span><span class="p">;</span>
@@ -507,7 +507,7 @@ Tag: <span class="tags">
 </span><span class="line">    <span class="n">retl</span> <span class="o">=</span> <span class="n">formula</span><span class="p">(</span><span class="n">retl</span><span class="p">);</span>
 </span><span class="line">    <span class="n">retr</span> <span class="o">=</span> <span class="n">formula</span><span class="p">(</span><span class="n">retr</span><span class="p">);</span>
 </span><span class="line">
-</span><span class="line">    <span class="k">return</span> <span class="n">mp</span><span class="p">(</span><span class="n">retl</span><span class="p">,</span><span class="n">retr</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="nf">mp</span><span class="p">(</span><span class="n">retl</span><span class="p">,</span><span class="n">retr</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
 </span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>

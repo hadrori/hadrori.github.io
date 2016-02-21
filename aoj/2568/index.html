@@ -238,7 +238,7 @@ AがA[i] = 1で他が0の場合を考えれば明らか. 逆もまた然り.<br 
 </span><span class="line"><span class="kt">bool</span> <span class="n">checked</span><span class="p">[</span><span class="mi">100010</span><span class="p">];</span>
 </span><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">INF</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">bool</span> <span class="n">input</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">bool</span> <span class="nf">input</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">N</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">    <span class="n">sp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
@@ -253,7 +253,7 @@ AがA[i] = 1で他が0の場合を考えれば明らか. 逆もまた然り.<br 
 </span><span class="line">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">checked</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">    <span class="n">checked</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -262,7 +262,7 @@ AがA[i] = 1で他が0の場合を考えれば明らか. 逆もまた然り.<br 
 </span><span class="line">    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">memset</span><span class="p">(</span><span class="n">checked</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">checked</span><span class="p">));</span>
 </span><span class="line">    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">    <span class="kt">bool</span> <span class="n">cntall</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -278,7 +278,7 @@ AがA[i] = 1で他が0の場合を考えれば明らか. 逆もまた然り.<br 
 </span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="n">ans</span> <span class="o">+</span> <span class="n">cntall</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">signed</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">signed</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class="line">    <span class="k">while</span><span class="p">(</span><span class="n">input</span><span class="p">()){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
 </span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>

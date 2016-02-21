@@ -287,13 +287,13 @@ Tag: <span class="tags">
 </span><span class="line">
 </span><span class="line"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">kruskal</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">es</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="n">edge</span> <span class="n">rm</span><span class="p">)</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">kruskal</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">es</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="n">edge</span> <span class="n">rm</span><span class="p">)</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="n">sort</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">es</span><span class="p">),</span> <span class="n">end</span><span class="p">(</span><span class="n">es</span><span class="p">));</span>
 </span><span class="line">        <span class="n">tree</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 </span><span class="line">        <span class="n">union_find</span> <span class="n">uf</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">;</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">es</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">es</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">==</span><span class="n">rm</span> <span class="n">or</span> <span class="n">uf</span><span class="p">.</span><span class="n">same</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">from</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span>
 </span><span class="line">                <span class="n">uf</span><span class="p">.</span><span class="n">unite</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">from</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">);</span>
 </span><span class="line">                <span class="n">w</span> <span class="o">+=</span> <span class="n">e</span><span class="p">.</span><span class="n">cst</span><span class="p">;</span>
@@ -306,11 +306,11 @@ Tag: <span class="tags">
 </span><span class="line">
 </span><span class="line"><span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="n">es</span><span class="p">,</span> <span class="n">used</span><span class="p">,</span> <span class="n">tmp</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="n">es</span><span class="p">,</span><span class="n">used</span><span class="p">,</span><span class="n">edge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">used</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">used</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;</span> <span class="n">kruskal</span><span class="p">(</span><span class="n">es</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="n">e</span><span class="p">))</span> <span class="p">{</span>
 </span><span class="line">                        <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
 </span><span class="line">                        <span class="n">ans</span> <span class="o">+=</span> <span class="n">e</span><span class="p">.</span><span class="n">cst</span><span class="p">;</span>
@@ -319,7 +319,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
 </span><span class="line">        <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
@@ -329,7 +329,7 @@ Tag: <span class="tags">
 </span><span class="line">        <span class="p">}</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class="line"><span class="p">{</span>
 </span><span class="line">        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class="line">        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>

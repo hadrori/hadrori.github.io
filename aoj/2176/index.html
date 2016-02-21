@@ -252,7 +252,7 @@ greedyに取り除けるものを取り除いていけばよい.</p>
 </span><span class="line">
 </span><span class="line"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class="line">    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span> <span class="o">||</span> <span class="n">d</span><span class="p">){</span>
 </span><span class="line">        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">missiles</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span><span class="line">        <span class="n">vi</span> <span class="n">cap</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
@@ -265,14 +265,14 @@ greedyに取り除けるものを取り除いていけばよい.</p>
 </span><span class="line">                <span class="n">cap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 </span><span class="line">            <span class="p">}</span>
 </span><span class="line">        <span class="p">}</span>
-</span><span class="line">        <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
-</span><span class="line">            <span class="kt">bool</span> <span class="n">erased</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">        <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">){</span>
+</span><span class="line">            <span class="kt">bool</span> <span class="n">erased</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 </span><span class="line">            <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()){</span>
 </span><span class="line">                <span class="k">while</span><span class="p">(</span><span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()){</span>
 </span><span class="line">                    <span class="n">cap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">back</span><span class="p">();</span>
 </span><span class="line">                    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">max_element</span><span class="p">(</span><span class="n">all</span><span class="p">(</span><span class="n">cap</span><span class="p">))</span> <span class="o">-</span> <span class="n">cap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">){</span>
 </span><span class="line">                        <span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">pop_back</span><span class="p">();</span>
-</span><span class="line">                        <span class="n">erased</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">                        <span class="n">erased</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span><span class="line">                    <span class="p">}</span>
 </span><span class="line">                    <span class="k">else</span> <span class="p">{</span>
 </span><span class="line">                        <span class="n">cap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">back</span><span class="p">();</span>
@@ -282,8 +282,8 @@ greedyに取り除けるものを取り除いていけばよい.</p>
 </span><span class="line">            <span class="p">}</span>
 </span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">erased</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
 </span><span class="line">        <span class="p">}</span>
-</span><span class="line">        <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class="line">        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="n">ok</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">        <span class="kt">bool</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class="line">        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">missiles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 </span><span class="line">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">ok</span><span class="o">?</span> <span class="s">&quot;Yes&quot;</span><span class="o">:</span> <span class="s">&quot;No&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class="line">    <span class="p">}</span>
 </span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>

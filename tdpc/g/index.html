@@ -233,9 +233,9 @@ Tag: <span class="tags">
 </span><span class="line"><span class="kt">int</span> <span class="n">K</span><span class="p">;</span>
 </span><span class="line"><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1000010</span><span class="p">][</span><span class="mi">30</span><span class="p">];</span> <span class="c1">//i文字目以降でjから始まる部分文字列の数</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">K</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">K</span><span class="p">;</span> <span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">void</span> <span class="n">recover</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">L</span><span class="p">){</span>
+</span><span class="line"><span class="kt">void</span> <span class="nf">recover</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">L</span><span class="p">){</span>
 </span><span class="line">    <span class="c1">//pos以降で一番左側の文字が未確定</span>
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
 </span><span class="line">        <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">26</span><span class="p">){</span>
@@ -257,7 +257,7 @@ Tag: <span class="tags">
 </span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="n">L</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">recover</span><span class="p">(</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="n">string</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class="line"><span class="n">string</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">repd</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="n">rep</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">26</span><span class="p">){</span>
 </span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span> <span class="o">+</span> <span class="sc">&#39;a&#39;</span><span class="p">){</span>
 </span><span class="line">            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -273,7 +273,7 @@ Tag: <span class="tags">
 </span><span class="line">    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line"><span class="kt">signed</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class="line"><span class="kt">signed</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class="line">    <span class="n">input</span><span class="p">();</span>
 </span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
