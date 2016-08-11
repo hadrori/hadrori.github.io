@@ -4,7 +4,7 @@
   <title><![CDATA[Category: POI | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/categories/poi/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2016-08-09T23:34:50+09:00</updated>
+  <updated>2016-08-11T23:37:46+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -186,7 +186,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">MAX</span><span class="p">],</span> <span class="n">hand</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">MAX</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">group</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">merge_vec</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">merge_vec</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
 </span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">a</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
@@ -194,7 +194,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="n">b</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">union_find</span> <span class="o">&amp;</span><span class="n">uf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">union_find</span> <span class="o">&amp;</span><span class="n">uf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">u</span> <span class="o">=</span> <span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">);</span> <span class="n">v</span> <span class="o">=</span> <span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
@@ -207,7 +207,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">else</span> <span class="n">merge_vec</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">union_find</span> <span class="n">uf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
@@ -219,7 +219,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
@@ -239,7 +239,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
@@ -338,7 +338,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">ac</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">],</span> <span class="n">bd</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">];</span>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">bool</span> <span class="n">calc</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">lr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">w</span><span class="p">[])</span>
+</span><span class='line'><span class="kt">bool</span> <span class="nf">calc</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">lr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">w</span><span class="p">[])</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pii</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="o">&gt;</span>  <span class="n">q</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -351,7 +351,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">calc</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="n">or</span> <span class="o">!</span><span class="n">calc</span><span class="p">(</span><span class="n">bd</span><span class="p">,</span><span class="n">y</span><span class="p">))</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;NIE&quot;</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">else</span> <span class="p">{</span>
@@ -361,7 +361,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">return</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>      <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>      <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
@@ -373,7 +373,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
@@ -512,7 +512,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">get_val</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bs</span><span class="p">)</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">get_val</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bs</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">lb</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">mid</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">ub</span><span class="o">-</span><span class="n">lb</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -523,7 +523,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">return</span> <span class="n">lb</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">bit</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">bs</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
@@ -538,13 +538,13 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
@@ -634,7 +634,7 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">22</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">right</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lb</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ub</span><span class="p">)</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">right</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lb</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ub</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">lb</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">a</span><span class="p">[</span><span class="n">lb</span><span class="p">.</span><span class="n">back</span><span class="p">()]</span><span class="o">&gt;=</span><span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="n">lb</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
 </span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">ub</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">a</span><span class="p">[</span><span class="n">ub</span><span class="p">.</span><span class="n">back</span><span class="p">()]</span><span class="o">&lt;=</span><span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="n">ub</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
@@ -642,14 +642,14 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="n">r</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">left</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lb</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ub</span><span class="p">)</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">left</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lb</span><span class="p">,</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ub</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">lb</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">==</span> <span class="n">l</span><span class="p">)</span> <span class="n">lb</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">ub</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">==</span> <span class="n">l</span><span class="p">)</span> <span class="n">ub</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">l</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">;</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -665,13 +665,13 @@ Union-Findのマージはいいとして, 猿の集合のマージはデータ�
 </span><span class='line'>        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>

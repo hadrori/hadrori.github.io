@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: sqrt-decomposition | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/sqrt-decomposition/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2016-08-09T23:34:50+09:00</updated>
+  <updated>2016-08-11T23:37:46+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -344,10 +344,10 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>        <span class="p">};</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">new_node</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">node</span><span class="p">(</span><span class="n">v</span><span class="p">);}</span>
-</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">new_node</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">node</span> <span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">node</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">);}</span>
-</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">rotate</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="n">node</span> <span class="o">*</span><span class="n">w</span> <span class="o">=</span> <span class="n">d</span><span class="o">?</span> <span class="n">v</span><span class="o">-&gt;</span><span class="nl">right:</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="nf">new_node</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">node</span><span class="p">(</span><span class="n">v</span><span class="p">);}</span>
+</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="nf">new_node</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">l</span><span class="p">,</span> <span class="n">node</span> <span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">node</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">);}</span>
+</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="nf">rotate</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">node</span> <span class="o">*</span><span class="n">w</span> <span class="o">=</span> <span class="n">d</span><span class="o">?</span> <span class="n">v</span><span class="o">-&gt;</span><span class="nl">right</span><span class="p">:</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                        <span class="n">v</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">w</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
 </span><span class='line'>                        <span class="n">w</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
@@ -363,7 +363,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>                <span class="n">w</span><span class="o">-&gt;</span><span class="n">color</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">return</span> <span class="n">w</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">merge_sub</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="nf">merge_sub</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="n">u</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">-&gt;</span><span class="n">rnk</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">rnk</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                        <span class="n">node</span> <span class="o">*</span><span class="n">w</span> <span class="o">=</span> <span class="n">merge_sub</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
@@ -395,11 +395,11 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>                <span class="k">else</span> <span class="k">return</span> <span class="n">new_node</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">RED</span><span class="p">);</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">insert</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="nf">insert</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">k</span><span class="p">);</span>
 </span><span class='line'>                <span class="k">return</span> <span class="n">root</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">merge</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">,</span><span class="n">v</span><span class="p">),</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">res</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">res</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 </span><span class='line'>                <span class="n">v</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">==</span> <span class="n">res</span><span class="p">)</span> <span class="p">{</span>
@@ -410,13 +410,13 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>                <span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">res</span><span class="o">-</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
 </span><span class='line'>                <span class="n">v</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">T</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">T</span> <span class="nf">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="n">v</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">)</span> <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
 </span><span class='line'>                <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">T</span> <span class="n">minimum</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">T</span> <span class="nf">minimum</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">inf</span><span class="p">;</span>
 </span><span class='line'>                <span class="n">v</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span>
 </span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">==</span> <span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">)</span> <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">min_val</span><span class="p">;</span>
@@ -438,7 +438,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>                <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">vs</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">return</span> <span class="n">root</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">build</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">vs</span><span class="p">),</span><span class="n">begin</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span><span class="o">+</span><span class="n">m</span><span class="p">)),</span> <span class="n">build</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span><span class="o">+</span><span class="n">m</span><span class="p">,</span><span class="n">end</span><span class="p">(</span><span class="n">vs</span><span class="p">))));</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">root</span><span class="o">?</span> <span class="n">root</span><span class="o">-&gt;</span><span class="nl">size:</span> <span class="mi">0</span><span class="p">;}</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">root</span><span class="o">?</span> <span class="n">root</span><span class="o">-&gt;</span><span class="nl">size</span><span class="p">:</span> <span class="mi">0</span><span class="p">;}</span>
 </span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">root</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">new_node</span><span class="p">(</span><span class="n">val</span><span class="p">));}</span>
 </span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">root</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">new_node</span><span class="p">(</span><span class="n">val</span><span class="p">),</span><span class="n">root</span><span class="p">);}</span>
 </span><span class='line'>        <span class="n">node</span> <span class="o">*</span><span class="n">merge</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">node</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
@@ -479,7 +479,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
 </span><span class='line'><span class="n">rbtree</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tr</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">prepare</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">prepare</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">seq</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -491,9 +491,9 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>        <span class="n">tr</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">seq</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kr">inline</span> <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">tr</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">+</span><span class="n">tr</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">tr</span><span class="p">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">);}</span>
+</span><span class='line'><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">tr</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">+</span><span class="n">tr</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">tr</span><span class="p">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">);}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">prepare</span><span class="p">();</span>
 </span><span class='line'>        <span class="kt">char</span> <span class="n">op</span><span class="p">;</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
@@ -516,12 +516,12 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">q</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">solve</span><span class="p">();</span>
@@ -698,7 +698,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ps</span><span class="p">;</span>
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="n">ask</span><span class="o">&gt;</span> <span class="n">qs</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">prepare</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">prepare</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">sort</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">ps</span><span class="p">));</span>
 </span><span class='line'>        <span class="n">ps</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">ps</span><span class="p">)),</span><span class="n">end</span><span class="p">(</span><span class="n">ps</span><span class="p">));</span>
@@ -720,7 +720,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">p_</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">p_</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">begin</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span><span class="n">end</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span> <span class="n">p_</span><span class="p">)</span><span class="o">-</span><span class="n">begin</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>
 </span><span class='line'>
@@ -730,14 +730,14 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>        <span class="k">return</span> <span class="n">ret</span><span class="o">+</span><span class="p">(</span><span class="n">l</span><span class="o">!=</span><span class="n">r</span><span class="o">?</span> <span class="n">bs</span><span class="p">[</span><span class="n">r</span><span class="o">/</span><span class="n">B</span><span class="p">].</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">bs</span><span class="p">[</span><span class="n">l</span><span class="o">/</span><span class="n">B</span><span class="p">].</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">prepare</span><span class="p">();</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e:</span> <span class="n">qs</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">query</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">p</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span><span class="p">:</span> <span class="n">qs</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">query</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">p</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">()</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -755,7 +755,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>        <span class="n">cin</span><span class="p">.</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -907,13 +907,13 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">300010</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">300010</span><span class="p">],</span> <span class="n">sum</span><span class="p">[</span><span class="mi">300010</span><span class="p">];</span>
 </span><span class='line'><span class="kt">int</span> <span class="n">qs</span><span class="p">[</span><span class="mi">1000</span><span class="p">],</span> <span class="n">nv</span><span class="p">[</span><span class="mi">1000</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">i</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">gen</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">gen</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">,</span> <span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">qs</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="n">B</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">li</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(;</span><span class="n">l</span><span class="o">%</span><span class="n">B</span> <span class="n">and</span> <span class="n">l</span><span class="o">&lt;</span><span class="n">r</span><span class="p">;</span><span class="o">++</span><span class="n">l</span><span class="p">,</span><span class="o">++</span><span class="n">li</span><span class="p">){</span>
 </span><span class='line'>        <span class="n">qs</span><span class="p">[</span><span class="n">l</span><span class="o">/</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="n">l</span><span class="o">/</span><span class="n">B</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">li</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
@@ -931,7 +931,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">%</span><span class="n">B</span><span class="o">&gt;</span><span class="n">B</span><span class="o">/</span><span class="mi">2</span> <span class="n">or</span> <span class="n">l</span><span class="o">/</span><span class="n">B</span><span class="o">==</span><span class="n">r</span><span class="o">/</span><span class="n">B</span><span class="p">){</span>
 </span><span class='line'>        <span class="k">for</span><span class="p">(;</span><span class="n">l</span><span class="o">%</span><span class="n">B</span> <span class="n">and</span> <span class="n">l</span><span class="o">&lt;</span><span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">l</span><span class="p">){</span>
@@ -968,7 +968,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">gen</span><span class="p">();</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">tp</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">while</span><span class="p">(</span><span class="n">m</span><span class="o">--</span><span class="p">){</span>
@@ -979,12 +979,12 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">solve</span><span class="p">();</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1116,17 +1116,17 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
 </span><span class='line'><span class="n">query</span> <span class="n">qs</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">build_lr</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">build_lr</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
 </span><span class='line'>    <span class="n">id</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">l</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">w:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">w</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">!=</span> <span class="n">u</span><span class="p">)</span> <span class="n">build_lr</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">build_lr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">sort</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">qs</span><span class="o">+</span><span class="n">m</span><span class="p">);</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">ls</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1141,7 +1141,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
@@ -1158,7 +1158,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">solve</span><span class="p">();</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1293,16 +1293,16 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="n">query</span> <span class="n">qs</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
 </span><span class='line'><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cnt</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
 </span><span class='line'>    <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">depth</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">depth</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">w:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">w</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">!=</span> <span class="n">u</span><span class="p">)</span> <span class="n">build</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// size of v &gt;= size of u</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">p:</span> <span class="n">cnt</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">u</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">p</span><span class="p">:</span> <span class="n">cnt</span><span class="p">[</span><span class="n">u</span><span class="p">]){</span>
 </span><span class='line'>        <span class="kt">int</span> <span class="o">&amp;</span><span class="n">cvf</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">];</span>
 </span><span class='line'>        <span class="n">repi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cvf</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">cvf</span><span class="o">+</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="o">+</span><span class="mi">1</span><span class="p">){</span>
 </span><span class='line'>            <span class="k">if</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">ccc</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="n">ccc</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">pb</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -1314,10 +1314,10 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="n">ccc</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">u:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
 </span><span class='line'>            <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
 </span><span class='line'>            <span class="k">if</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cnt</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">w</span><span class="p">){</span>
@@ -1332,7 +1332,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="n">swap</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">cnt</span><span class="p">[</span><span class="n">id</span><span class="p">]);</span>
 </span><span class='line'>    <span class="n">swap</span><span class="p">(</span><span class="n">ccc</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">ccc</span><span class="p">[</span><span class="n">id</span><span class="p">]);</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">u:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
 </span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="n">and</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">id</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">merge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
@@ -1342,7 +1342,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="n">cv</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">build</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">sort</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">qs</span><span class="o">+</span><span class="n">m</span><span class="p">);</span>
@@ -1355,7 +1355,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">input</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">input</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
@@ -1373,7 +1373,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">solve</span><span class="p">();</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1473,13 +1473,13 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">cnt</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">rnd</span><span class="p">(</span><span class="n">ull</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">rnd</span><span class="p">(</span><span class="n">ull</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">){</span>
 </span><span class='line'>    <span class="n">x</span> <span class="o">^=</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">13</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">x</span> <span class="o">^=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">x</span> <span class="o">^=</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">17</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">ll</span> <span class="n">solve</span><span class="p">(){</span>
+</span><span class='line'><span class="n">ll</span> <span class="nf">solve</span><span class="p">(){</span>
 </span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">x0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">ull</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">){</span>
@@ -1505,7 +1505,7 @@ yがx未満であるとき, 負になる分の’)’をyの位置以前で取�
 </span><span class='line'>    <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span><span class='line'>    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="n">x0</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
