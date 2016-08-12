@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: probabilities | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/probabilities/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2016-08-11T23:48:27+09:00</updated>
+  <updated>2016-08-12T23:31:30+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -100,104 +100,6 @@
 </span><span class='line'>    <span class="n">input</span><span class="p">();</span>
 </span><span class='line'>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Project Euler 205 Dice Game]]></title>
-    <link href="http://algoogle.hadrori.jp/projecteuler/205/"/>
-    <updated>2014-05-27T23:39:52+09:00</updated>
-    <id>http://algoogle.hadrori.jp/projecteuler/205</id>
-    <content type="html"><![CDATA[<p><a href="http://projecteuler.net/problem=205">Dice Game</a></p>
-
-<h4 id="section">問題概要</h4>
-
-<hr />
-
-<h4 id="section-1">解法</h4>
-
-<hr />
-
-<p>それぞれ1~36までの値が出る場合の数を出しておいて<br />
-ピーターの各出目に対して勝つ場合の数を計算する.<br />
-あとは全体の場合の数で割ればいい.</p>
-
-<h4 id="section-2">コード</h4>
-
-<hr />
-
-<p><figure class='code'><figcaption><span> (205.d)</span> <a href='/downloads/code/PE/205.d'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='d'><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="nb">string</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">conv</span><span class="p">;</span>
-</span><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">bigint</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">math</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">range</span><span class="p">;</span>
-</span><span class='line'><span class="k">import</span> <span class="n">core</span><span class="p">.</span><span class="n">thread</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">long</span><span class="p">[</span><span class="mi">37</span><span class="p">]</span> <span class="n">pcnt</span><span class="p">,</span> <span class="n">ccnt</span><span class="p">;</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
-</span><span class='line'>    <span class="n">pcnt</span><span class="p">[]</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ccnt</span><span class="p">[]</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">pdfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span> <span class="n">cdfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
-</span><span class='line'>    <span class="kt">long</span><span class="p">[</span><span class="mi">37</span><span class="p">]</span> <span class="n">csum</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">psum</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">i</span><span class="p">;</span><span class="mf">1..37</span><span class="p">){</span>
-</span><span class='line'>        <span class="n">csum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">csum</span><span class="p">[</span><span class="n">i</span><span class="p">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">+</span> <span class="n">ccnt</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">psum</span> <span class="p">+=</span> <span class="n">pcnt</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kt">double</span> <span class="n">ans</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">i</span><span class="p">;</span><span class="mf">1..37</span><span class="p">){</span>
-</span><span class='line'>        <span class="n">ans</span> <span class="p">+=</span> <span class="n">csum</span><span class="p">[</span><span class="n">i</span><span class="p">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">*</span> <span class="n">pcnt</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">writefln</span><span class="p">(</span><span class="s">&quot;%.7f&quot;</span><span class="p">,</span><span class="n">ans</span> <span class="p">/</span> <span class="p">(</span><span class="n">psum</span> <span class="p">*</span> <span class="n">csum</span><span class="p">[</span><span class="mi">36</span><span class="p">]));</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">pdfs</span><span class="p">(</span><span class="kt">long</span> <span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="p">==</span> <span class="mi">0</span><span class="p">){</span>
-</span><span class='line'>        <span class="n">pcnt</span><span class="p">[</span><span class="n">sum</span><span class="p">]++;</span>
-</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">i</span><span class="p">;</span><span class="mf">1..5</span><span class="p">)</span> <span class="n">pdfs</span><span class="p">(</span><span class="n">sum</span><span class="p">+</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">-</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">cdfs</span><span class="p">(</span><span class="kt">long</span> <span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="p">==</span> <span class="mi">0</span><span class="p">){</span>
-</span><span class='line'>        <span class="n">ccnt</span><span class="p">[</span><span class="n">sum</span><span class="p">]++;</span>
-</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">i</span><span class="p">;</span><span class="mf">1..7</span><span class="p">)</span> <span class="n">cdfs</span><span class="p">(</span><span class="n">sum</span><span class="p">+</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">-</span><span class="mi">1</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 ]]></content>

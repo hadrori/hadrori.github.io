@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: grundy-number | Algoogle]]></title>
   <link href="http://algoogle.hadrori.jp/tags/grundy-number/atom.xml" rel="self"/>
   <link href="http://algoogle.hadrori.jp/"/>
-  <updated>2016-08-11T23:48:27+09:00</updated>
+  <updated>2016-08-12T23:31:30+09:00</updated>
   <id>http://algoogle.hadrori.jp/</id>
   <author>
     <name><![CDATA[hadrori]]></name>
@@ -97,63 +97,6 @@ Nimはxorとって0以外だったら必勝.<br />
 </span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span class="p">());</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Project Euler 301 Nim]]></title>
-    <link href="http://algoogle.hadrori.jp/projecteuler/301/"/>
-    <updated>2014-05-04T17:14:29+09:00</updated>
-    <id>http://algoogle.hadrori.jp/projecteuler/301</id>
-    <content type="html"><![CDATA[<p><a href="http://projecteuler.net/problem=301">Nim</a></p>
-
-<h4 id="section">問題概要</h4>
-
-<hr />
-
-<h4 id="section-1">解法</h4>
-
-<hr />
-
-<p>Nimなので3つのxorとって0以外だったらカウント</p>
-
-<h4 id="section-2">コード</h4>
-
-<hr />
-
-<p><figure class='code'><figcaption><span> (301.d)</span> <a href='/downloads/code/PE/301.d'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='d'><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="nb">string</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">conv</span><span class="p">;</span>
-</span><span class='line'><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">bigint</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">math</span><span class="p">,</span> <span class="n">std</span><span class="p">.</span><span class="n">range</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">const</span> <span class="kt">long</span> <span class="n">MAX</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">&lt;&lt;</span> <span class="mi">30</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">ans</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">foreach</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="mf">1.</span><span class="p">.</span><span class="n">MAX</span><span class="p">+</span><span class="mi">1</span><span class="p">){</span>
-</span><span class='line'>        <span class="kt">long</span> <span class="n">x</span> <span class="p">=</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">x</span> <span class="p">^=</span> <span class="mi">2</span> <span class="p">*</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">x</span> <span class="p">^=</span> <span class="mi">3</span> <span class="p">*</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(!</span><span class="n">x</span><span class="p">)</span> <span class="n">ans</span><span class="p">++;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">writeln</span><span class="p">(</span><span class="n">ans</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
